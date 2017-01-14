@@ -1,3 +1,5 @@
+
+
 =begin
 def language(speak)
   if speak == "JavaScript"
@@ -28,8 +30,8 @@ p language("JavaScript") == "I like JavaScript"
 p language("Unity") == "I like Unity"
 p language("Swin") == "I don't like to code"
 =end
+=begin
 def language(speak)
-  like=""
   case speak
   when "JavaScript";like = true
   when "CSS"; like =true
@@ -44,7 +46,8 @@ def language(speak)
   end
   like ? "I like #{speak}" : "I don't like to code"
 end
-
+=end
+def language(speak); speak == "Swin" ? "I don't like to code" : "I like #{speak}" end
 #test
 p language("JavaScript") == "I like JavaScript"
 p language("Unity") == "I like Unity"

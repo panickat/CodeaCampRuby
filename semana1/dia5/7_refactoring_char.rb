@@ -11,4 +11,4 @@ end
 #test
 p char == "A, B, C, D, E, F, G, H, I, J, K"
 =end
-def char; ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"].join(", ") end; p char
+def char; ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"].join(", ") end; p char == "A, B, C, D, E, F, G, H, I, J, K"

@@ -11,7 +11,7 @@ p shopping(["eggs", "milk", "bread", "orange juice"]) == "eggs, milk, bread, ora
 =end
 def shopping(list)
   basket_shopping = nil
-  basket_shopping = list.join(", ") if basket_shopping.nil?
+  basket_shopping ||= list.join(", ") 
 end
 
 #test
