@@ -1,3 +1,4 @@
+# Haz pasar la prueba. No elimines ninguna parte del código y no modifiques la prueba.
  def numbers(list)
   list.collect do |num|
     num * 2/2
