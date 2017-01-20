@@ -13,16 +13,13 @@ class Stair
   def larger_size_than?(obj)
     @size > obj.size ? true : false
   end
-
-  protected
-  attr_reader :size
-
-  private
   def initialize(material="no_material",size=0)
     @material = material
     @size = size
   end
 
+  protected
+  attr_reader :size
 end
 
 #test

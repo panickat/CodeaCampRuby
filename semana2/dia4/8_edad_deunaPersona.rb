@@ -14,9 +14,9 @@ p carlos.years_old
 =end
 class Person
   def age; "#{@name} is #{years_old} years old." end
-  def years_old; Time.new.year - @birth end
 
   private
+  def years_old; Time.new.year - @birth end
   def initialize(name ="no_name",birth=0)
     @name = name
     @birth = birth

@@ -5,20 +5,23 @@ La serie de Fibonacci comienza con los números 1 y 1, y a partir de éstos, cad
 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
 =end
 #f= f-1 + f-2
-def fibonacci(n)
-return if n < 2
-
-fx = 0
-h1 = 1
-h2 = 2
-
-  for i in 4..n
-    fx = h1 + h2
-     if h1 < h2
-       h1 = h2
-       h2 = fx
-     end
-    p "Loop #{i}   fx: #{fx} =  #{h1} +  #{h2}"
+class Fibonacci_over2
+  def get(n)
+    fx = 0; h1 = 0; h2 = 1
+    for i in 2..n
+      fx = h1 + h2
+         h1 = h2
+         h2 = fx
+      #p "Loop #{i}   fx: #{fx} =  #{h1} +  #{h2}"
+    end
+    fx
+  end
+end
+class Fibonacci < Fibonacci_over2
+  def get(n)
+    return super if n >= 2
+    return 0 if n == 0
+    return 1 if n == 1
   end
 end
 =begin
@@ -33,6 +36,10 @@ L4    fx:3  = 1 + 2   fx > h2 & h2 > h1
 L5    fx:5  = 2 + 3   fx > h2 & h2 > h1
 L6    fx:8  = 3 + 5
 =end
-
+fibonacci = Fibonacci.new
 # Pruebas
-fibonacci(12)
+p fibonacci.get(2) == 1
+p fibonacci.get(3) == 2
+p fibonacci.get(4) == 3
+p fibonacci.get(5) == 5
+p fibonacci.get(10) == 55
