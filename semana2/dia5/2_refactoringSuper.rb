@@ -10,11 +10,7 @@ end
 
 class B < A
   def b(a)
-    if a == 5
-      'B.b'
-    else
-      super b(a)
-    end
+    a == 5 ? "B.b" : super
   end
 end
 b = B.new
