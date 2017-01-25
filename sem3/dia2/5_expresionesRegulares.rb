@@ -38,52 +38,53 @@ Regresa un string formateado donde cualquier número de diez dígitos seguido o 
 =end
 class Account
   attr_reader :match, :accounts, :acc_f
-  attr_reader :match_err, :err_acc, :error_acc_f
-  attr_reader :match_err_large, :err_acc_large, :error_acc_f_large
+  attr_reader :match_err, :err, :err_f
+  attr_reader :match_errL, :errL, :err_fL
 
   def initialize(l, s, f)
     @large = l
     @separator = s
     @format = f.to_s.split("")
     @acc_f = 0
-    @error_acc_f = 0
-    @error_acc_f_large =0
+    @err_f = 0
+    @err_fL =0
     @match = false
     @match_err = false
-    @match_err_large = false
+    @match_errL = false
     @accounts = []
-    @err_acc = []
-    @err_acc_large = []
+    @err = []
+    @errL = []
   end
   def get=(str)
     @accounts = extract(str,@separator)
-    @match = @accounts.empty?
+    @match = @accounts.empty? ? false : true
     @acc_f = @accounts.length if @match == true
 
-    @err_acc = extract(str,"[ ,._\\-+*#]?","1,")
-    @match_err = @err_acc.empty?
-    @error_acc_f = @err_acc.length if @match_err == true
+    @err = extract(str,"[ ,._\\-+*#]?","1,")
+    @match_err = @err.empty? ? false : true
+    @err_f = @err.length if @match_err == true
 
     @accounts.each do |acc|
-      @err_acc.select! do |err|
-        err != acc && err.length >= 10
+      @err.select! do |err|
+        err != acc && err.length >= @large
       end
     end
 
-    @err_acc_large = extract(str,"[ ,._\\-+*#]?", "1,")
-    @match_err_large = @err_acc_large.empty?
-    @error_acc_f_large = @err_acc_large.length if @match_err_large == true
+    @errL = extract(str,"[ ,._\\-+*#]?", "1,")
+    @match_errL = @errL.empty? ? false : true
+    @err_fL = @errL.length if @match_errL == true
 
-    @err_acc_large.select! {|s| s.length < 10}
+    @errL.select! {|s| s.length < @large}
   end
   def fix
-    @err_acc.collect do |c|
+    #Revisar para hacerlo multi formato, actual mente solo con 4,3,3
+    @err.collect do |c|
       case c.length
-      when 10
-        "#{c[0..3]}-#{c[4..6]}-#{c[7..9]}}"
-      when 12
+      when @large
+        c[0..3] + @separator + c[4..6] + @separator + c[7..9]
+      when @large + 2
         c.gsub!(/[ ,._\-+*#]?/,"")
-        "#{c[0..3]}-#{c[4..6]}-#{c[7..9]}}"
+        c[0..3] + @separator + c[4..6] + @separator + c[7..9]
       end
     end
   end
@@ -104,15 +105,30 @@ class Account
     str.scan( Regexp.new(re) )
   end
 
+  def found_account?
+     @acc_f >= 1 ? true : false
+  end
+  def protect(a)
+      protect = "X" * @format[0].to_i + @separator + "X" * @format[1].to_i + @separator
+      a.each do |e|
+        protect += e[e.length-3,3]
+      end
+      protect
+  end
+
 end
 
 acc = Account.new(10, "-", 433)
 acc.get = "El Cliente con el número de cuenta 1234-123-123 se encuentra en proceso de revisión de sus documentos"
 p acc.accounts == ["1234-123-123"]
 acc.get = "El Cliente con el número de cuenta 4-12-12 se encuentra en proceso de revisión de sus documentos"
-acc.err_acc_large
-acc.get = "Hay que tra0123456789nsferir los fondos de la 4-12-12 cuenta 1234-123-123 a la cuenta 4321-321.311"
-p acc.accounts
-p acc.err_acc
-p acc.err_acc_large
-p acc.fix
+p acc.errL == ["4-12-12"]
+acc.get = "Hay que transferir los fondos de la cuenta 1234-123-123 a la cuenta 4321-321-311"
+p acc.accounts == ["1234-123-123","4321-321-311"]
+
+acc.get = "Hay que transferir los fondos de la cuenta 1234-123-123 a la cuenta 4321 321.311"
+p acc.found_account? # Regresa true si encuentra un numero de cuenta.
+p acc.accounts[0] # Regresa un número de cuenta si existe dentro del string y nil en el caso contrario.
+p acc.accounts# Regresa un array con los números de cuenta que existen dentro del string y un array vacío en el caso contrario.
+p acc.protect(acc.accounts) # Regresa un string ej. "XXXX-XXX-234"
+p acc.fix #Regresa un string formateado donde cualquier número de diez dígitos seguido o si tiene puntos en vez de guiones lo regresa a su formato original
