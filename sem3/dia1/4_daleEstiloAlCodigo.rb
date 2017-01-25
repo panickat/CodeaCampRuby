@@ -41,42 +41,39 @@ La palabra clave del apunte es seguida de dos puntos y un espacio, y luego una n
 Si se son necesarias varias líneas para describir el problema, las líneas subsiguientes tienen que tener una sangría de dos espacios después del #.
 Copia este código en un archivo y arregla el desastre que tiene.
 =end
-class PERSON
-LIFE_stage = {childhood:12,teenager:19,adult:50}
-LEGAL_AGE = 18
-    attr_reader :name
-attr_writer :name
+class Person
+  @@life_stage = {childhood:12, teenager:19, adult:50}
+  @@legal_age = 18
+  attr_accessor :name
+  attr_reader :age
 
-    def initialize ( name,age ); @name = name
-        @age = age
+  def initialize (name, age)
+    @name = name
+    @age = age
+  end
+
+  def life_stage
+    if @age < @@life_stage[:childhood]
+      :childhood
+    elsif @age < @@life_stage[:teenager]
+      :teenager
+    elsif @age < @@life_stage[:adult]
+      :adult
+    else
+      :elder
     end
-    def age
-        return @age
+  end
+
+  def legal
+    @age >= @@legal_age
+  end
 end
 
-    def life_stage
-if @age < LIFE_stage[:childhood]
-            return :childhood
-        elsif( @age<LIFE_stage[:teenager])
-            return :teenager
-        elsif( @age<LIFE_stage[:adult]);return :adult
-        else
-            return :elder
-    end
-    end
-
-      def legal
-return @age >= LEGAL_AGE
-    end
-end
-
-
-# Esta parte del código son pruebas.
-# Antes y después deben de imprimir puros "true"
-fernando = PERSON.new("Fernando",5)
-juan = PERSON.new("Juan",45)
-laura = PERSON.new("Laura",87)
-andrea = PERSON.new("Andrea",13)
+# Pruebas: Antes y después deben de imprimir puros "true"
+fernando = Person.new("Fernando", 5)
+juan = Person.new("Juan", 45)
+laura = Person.new("Laura", 87)
+andrea = Person.new("Andrea", 13)
 
 puts fernando.legal == false
 puts juan.legal == true
