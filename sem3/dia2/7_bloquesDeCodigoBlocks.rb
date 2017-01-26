@@ -29,17 +29,23 @@ Ahora regresa a alguno de los ejercicios que has completado y analiza su efectiv
 time = Time.now
 
 def do_this_block
+  p "start def"
   t = Time.now
+
+  p "end def"
   time_block = yield
   "time end method #{t} : Time end block #{time_block}"
+  p "end yield"
 end
 
 p do_this_block {
   sleep(1)
   Time.now
+  p "block 1"
 }
 p do_this_block {
   sleep(1)
   Time.now
+  p "block 2"
 }
 p time
