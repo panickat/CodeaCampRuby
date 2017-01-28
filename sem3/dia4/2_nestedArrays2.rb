@@ -1,7 +1,7 @@
 require "colorize"
 def tablero_gato(n)
 
-  linea = [[""] * 3]
+  linea = [["x"] * 3]
   tablero = [linea * 3]
   tableros = tablero * n
 
@@ -20,27 +20,27 @@ def tablero_gato(n)
   p t2
   exit
 =end
+continuo = 0
+background = :cyan
+#t2 = [[[1,2,3],[4,5,6],[7,8,9]]]
+t2 = []
+t2 << [["a","b","c"],["d","e","f"],["g","h","i"]]
+t2 << [["a","b","c"],["d","e","f"],["g","h","i"]]
 
-  for l in 0..tableros[0].length - 1
-    for c in 0..tableros[0][l].length - 1
+for t in 0..tableros.length - 1
+  continuo = 0
+  for l in 0..tableros[t].length - 1
+    for c in 0..tableros[t][l].length - 1
       i += 1
+      continuo += 1
 
       if color == true
-        nombre_pieza += "  "
-        for t in 0..tableros.length - 1
-          tableros[t][l][i - 1] = jugadas_gato
-          nombre_pieza += cuadro(tableros[0][l][i - 1],player_color,:cyan)
-        end
+        background = :cyan
         color = false
       else
-        nombre_pieza += "  "
-        for t in 0..tableros.length - 1
-          tableros[t][l][i - 1] = jugadas_gato
-          nombre_pieza += cuadro(tableros[0][l][i - 1],player_color,:white)
-        end
+        background = :white
         color = true
       end
-
 
       if player_change_color == true
         player_color = :red
@@ -49,12 +49,10 @@ def tablero_gato(n)
         player_color = :black
         player_change_color = true
       end
+      t2[t][l][c] = cuadro(jugadas_gato,player_color,background)
 
       if i == 3
-
-        puts nombre_pieza
         i = 0
-        nombre_pieza = ""
         if color == true
           color = true
         else
@@ -62,10 +60,49 @@ def tablero_gato(n)
         end
       end
 
+
     end
   end
-  tableros
 end
+
+p t2[0] == t2[1]
+  i = 0
+  l = ""
+#cuadro = ""
+#cuadro2 = ""
+cuadro = ["",""]
+out = ""
+#for t in 0..tableros.length - 1
+  for l in 0..tableros[0].length - 1
+    for c in 0..tableros[0][l].length - 1
+
+      #cuadro += t2[0][l][c]
+      #cuadro2 += t2[1][l][c]
+      for t in 0..t2.length - 1
+        cuadro[t] += t2[t][l][c]
+      end
+
+      i += 1
+      if i == 3
+        #puts cuadro + " " + cuadro2
+        #cuadro = ""
+        #cuadro2 = ""
+        #for t in 0..cuadro.length - 1
+
+        #end
+        puts cuadro[0] + " " + cuadro[1]
+        cuadro = ["",""]
+        p
+        i = 0
+      end
+
+    end
+  end
+
+#end
+
+end
+
 def cuadro(str,player_color,background)
    str.ljust(3).colorize(player_color).colorize( :background => background)
 end
@@ -75,4 +112,4 @@ def jugadas_gato
   jugada[rand(0..1)]
 end
 
-p tablero_gato(3)
+tablero_gato(2)
