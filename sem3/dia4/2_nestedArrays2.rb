@@ -1,11 +1,9 @@
-#linea = [["x"] * 3]
-#tablero = [linea * 3]
+require "colorize"
+def tablero_gato(n)
 
-
-def tablero_gato
-  require "colorize"
   linea = [[""] * 3]
   tablero = [linea * 3]
+  tableros = tablero * n
 
   i = 0
   nombre_pieza = ""
@@ -13,26 +11,36 @@ def tablero_gato
   player_color = :black
   player_change_color = true
 =begin
-t2 = tablero[0].collect do |c|
-  c.collect do |c2|
-     c2 = jugadas_gato
+  t2 = tablero[0].collect do |c|
+    c.collect do |c2|
+      c2 = jugadas_gato
+    end
   end
-end
-p tablero
-p t2
-exit
+  p tablero
+  p t2
+  exit
 =end
-  tablero[0].collect! do |line|
-    line.collect! do |cuadro|
+
+  for l in 0..tableros[0].length - 1
+    for c in 0..tableros[0][l].length - 1
       i += 1
-      cuadro = jugadas_gato
+
       if color == true
-        nombre_pieza += cuadro.to_s.ljust(8).colorize(player_color).colorize( :background => :cyan)
+        nombre_pieza += "  "
+        for t in 0..tableros.length - 1
+          tableros[t][l][i - 1] = jugadas_gato
+          nombre_pieza += cuadro(tableros[0][l][i - 1],player_color,:cyan)
+        end
         color = false
       else
-        nombre_pieza += cuadro.to_s.ljust(8).colorize(player_color).colorize( :background => :white)
+        nombre_pieza += "  "
+        for t in 0..tableros.length - 1
+          tableros[t][l][i - 1] = jugadas_gato
+          nombre_pieza += cuadro(tableros[0][l][i - 1],player_color,:white)
+        end
         color = true
       end
+
 
       if player_change_color == true
         player_color = :red
@@ -43,6 +51,7 @@ exit
       end
 
       if i == 3
+
         puts nombre_pieza
         i = 0
         nombre_pieza = ""
@@ -52,10 +61,13 @@ exit
           color = false
         end
       end
-      cuadro
+
     end
   end
-  tablero
+  tableros
+end
+def cuadro(str,player_color,background)
+   str.ljust(3).colorize(player_color).colorize( :background => background)
 end
 
 def jugadas_gato
@@ -63,7 +75,4 @@ def jugadas_gato
   jugada[rand(0..1)]
 end
 
-juego1 = tablero_gato
-puts " "
-p juego2 = tablero_gato == juego1
-p juego3 = tablero_gato == juego1 || juego2
+p tablero_gato(3)
