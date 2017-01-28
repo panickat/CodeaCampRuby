@@ -1,110 +1,82 @@
-require "colorize"
+
 def tablero_gato(n)
-
-  linea = [["x"] * 3]
-  tablero = [linea * 3]
+  require "colorize"
+=begin
+  Error: Duda Generar exactamente el mismo array de esta forma altera la impresion
+  linea = ["x"] * 3
+  tablero = [[linea] * 3]
   tableros = tablero * n
-
-  i = 0
-  nombre_pieza = ""
+=end
+  tableros = []
+  for i in 1..n
+    tableros << [['a','b','c'],['d','e','f'],['g','h','i']]
+  end
+  p "Cada gato es una tabla con este formato: "
+  p tableros[0]
+  player_change_color = true
   color = true
   player_color = :black
-  player_change_color = true
-=begin
-  t2 = tablero[0].collect do |c|
-    c.collect do |c2|
-      c2 = jugadas_gato
-    end
-  end
-  p tablero
-  p t2
-  exit
-=end
-continuo = 0
-background = :cyan
-#t2 = [[[1,2,3],[4,5,6],[7,8,9]]]
-t2 = []
-t2 << [["a","b","c"],["d","e","f"],["g","h","i"]]
-t2 << [["a","b","c"],["d","e","f"],["g","h","i"]]
+  background = :cyan
 
-for t in 0..tableros.length - 1
-  continuo = 0
-  for l in 0..tableros[t].length - 1
-    for c in 0..tableros[t][l].length - 1
-      i += 1
-      continuo += 1
+  for t in 0..n - 1
+    for l in 0..tableros[t].length - 1
+      i = 0
+      for c in 0..tableros[t][l].length - 1
+        i += 1
 
-      if color == true
-        background = :cyan
-        color = false
-      else
-        background = :white
-        color = true
-      end
-
-      if player_change_color == true
-        player_color = :red
-        player_change_color = false
-      else
-        player_color = :black
-        player_change_color = true
-      end
-      t2[t][l][c] = cuadro(jugadas_gato,player_color,background)
-
-      if i == 3
-        i = 0
         if color == true
-          color = true
-        else
+          background = :cyan
           color = false
+        else
+          background = :white
+          color = true
         end
+
+        if player_change_color == true
+          player_color = :red
+          player_change_color = false
+        else
+          player_color = :black
+          player_change_color = true
+        end
+        tableros[t][l][c] = cuadro(jugadas_gato,player_color,background)
+
+        if i == 3
+          i = 0
+          if color == true
+            color = true
+          else
+            color = false
+          end
+        end
+
       end
-
-
     end
   end
-end
+  cuadro = [""] * n
 
-p t2[0] == t2[1]
-  i = 0
-  l = ""
-#cuadro = ""
-#cuadro2 = ""
-cuadro = ["",""]
-out = ""
-#for t in 0..tableros.length - 1
   for l in 0..tableros[0].length - 1
     for c in 0..tableros[0][l].length - 1
 
-      #cuadro += t2[0][l][c]
-      #cuadro2 += t2[1][l][c]
-      for t in 0..t2.length - 1
-        cuadro[t] += t2[t][l][c]
+      for t in 0..cuadro.length - 1
+        cuadro[t] += tableros[t][l][c]
       end
-
       i += 1
-      if i == 3
-        #puts cuadro + " " + cuadro2
-        #cuadro = ""
-        #cuadro2 = ""
-        #for t in 0..cuadro.length - 1
 
-        #end
-        puts cuadro[0] + " " + cuadro[1]
-        cuadro = ["",""]
+      if i == 3
+        puts cuadro.inject {|m,sum| m + "  " + sum}
+        cuadro = [""] * n
         p
         i = 0
       end
 
     end
   end
-
-#end
-
+tableros
 end
 
 def cuadro(str,player_color,background)
-   str.ljust(3).colorize(player_color).colorize( :background => background)
+  str.ljust(3).colorize(player_color).colorize( :background => background)
 end
 
 def jugadas_gato
@@ -112,4 +84,9 @@ def jugadas_gato
   jugada[rand(0..1)]
 end
 
-tablero_gato(2)
+t = tablero_gato(5)
+p t[4] == t[1]
+p t[0] == t[1]
+p t[0] == t[2]
+p t[0] == t[3]
+p t[0] == t[4]
