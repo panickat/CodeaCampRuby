@@ -40,15 +40,15 @@ def tablero_gato(n)
   tableros
 end
 
-def background(background)
-  background == :cyan ? :white : :cyan
+def background(_background)
+  _background == :cyan ? :white : :cyan
 end
 def player_color(_player_color)
   _player_color == :black ? :red : :black
 end
 
-def formato(str,player_color,background)
-  str.ljust(3).colorize(player_color).colorize( :background => background)
+def formato(str,player_color,_background)
+  str.ljust(3).colorize(player_color).colorize( :background => _background)
 end
 
 def get_sample(a)
