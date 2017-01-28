@@ -12,9 +12,18 @@ def tablero_gato
   color = true
   player_color = :black
   player_change_color = true
-
-  tablero[0].collect do |line|
-    line.collect do |cuadro|
+=begin
+t2 = tablero[0].collect do |c|
+  c.collect do |c2|
+     c2 = jugadas_gato
+  end
+end
+p tablero
+p t2
+exit
+=end
+  tablero[0].collect! do |line|
+    line.collect! do |cuadro|
       i += 1
       cuadro = jugadas_gato
       if color == true
@@ -43,7 +52,7 @@ def tablero_gato
           color = false
         end
       end
-
+      cuadro
     end
   end
   tablero
@@ -54,5 +63,7 @@ def jugadas_gato
   jugada[rand(0..1)]
 end
 
- a = tablero_gato
- p a
+juego1 = tablero_gato
+puts " "
+p juego2 = tablero_gato == juego1
+p juego3 = tablero_gato == juego1 || juego2
