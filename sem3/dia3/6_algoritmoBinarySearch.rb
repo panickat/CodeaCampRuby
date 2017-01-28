@@ -48,7 +48,7 @@ If Am > T, set R to m – 1 and go to step 2.
 Now Am = T, the search is done; return m.
 =end
 def binary_search(target,array)
-  array.sort!
+  array.flatten!.sort
   l = 0
   r = array.length - 1
   result = target + 1
@@ -64,7 +64,7 @@ def binary_search(target,array)
   m
 end
 def middle(l,r)
-  return 0 if r == 1
+  return 0 if r == 1 # revisar si 0 o 1
   ((l + r) /2).floor
 end
 
