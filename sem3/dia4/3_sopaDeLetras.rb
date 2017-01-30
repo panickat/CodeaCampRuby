@@ -18,7 +18,7 @@ end
 
 class Board < Cuadricula
   require "colorize"
-  
+
   def initialize(cols,a)
     @array_tomatch = a[0]
     @cols = cols
@@ -34,18 +34,27 @@ class Board < Cuadricula
     out
   end
   def match_toarray!
-    _player_color = :light_yellow
-    _background = :cyan
-    match2 = []
+    tblcoordinates = []
+    cols = @cols - 1
     # get vertical coords
-    for i in 0..@cols
-      match2 << (0..@rows).to_a.product([i])
+    for i in 0..cols
+      tblcoordinates << (0..@rows).to_a.product([i])
     end
+    tblcoordinates = get_coordinates(tblcoordinates)
+    merge_tblcoords(tblcoordinates)
 
+    # get horizontal coords
+    for i in 0..cols
+      tblcoordinates << [i].product((0..cols).to_a)
+    end
+    tblcoordinates = get_coordinates(tblcoordinates)
+    merge_tblcoords(tblcoordinates)
+  end
+  def get_coordinates(tblcoordinates)
     word = {str: [], array: []}
     result = []
 
-    match2.each do |line|
+    tblcoordinates.each do |line|
 
       line.each do |a,b|
         word[:str] << @tbls[:notformated][a][b]
@@ -55,8 +64,13 @@ class Board < Cuadricula
       result << kick_badchars(word) if include?(word[:str].join) == true
       word = {str: [], array: []}
     end
-    # Separar a otro metodo para que reciba todos los tipos de match
-    result.flatten(1).each do |x,y|
+    result
+  end
+  def merge_tblcoords(tbl_tomerge)
+    _player_color = :light_yellow
+    _background = :cyan
+
+    tbl_tomerge.flatten(1).each do |x,y|
       _background = background2(_background)
       _player_color = player_color2(_player_color)
       @tbls[:formated][x][y] = formato(@tbls[:formated][x][y],_player_color,_background)
