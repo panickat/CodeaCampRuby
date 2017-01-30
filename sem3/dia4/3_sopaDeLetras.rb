@@ -34,9 +34,9 @@ class Board < Cuadricula
     out
   end
   def match_toarray!
-    tblcoordinates = []
     cols = @cols - 1
     # get vertical coords
+    tblcoordinates = []
     for i in 0..cols
       tblcoordinates << (0..@rows).to_a.product([i])
     end
@@ -44,12 +44,39 @@ class Board < Cuadricula
     merge_tblcoords(tblcoordinates)
 
     # get horizontal coords
+    tblcoordinates = []
     for i in 0..cols
       tblcoordinates << [i].product((0..cols).to_a)
     end
     tblcoordinates = get_coordinates(tblcoordinates)
     merge_tblcoords(tblcoordinates)
+
+    # get diagonal asc coords
+    #p cols; p @rows; exit
+    tblcoordinates = []
+    rango = cols + @rows # sobra en el array un 7 , pendiente restar a @rows a - 1
+    for i in 1..rango
+      i <= @rows ? x = i : x = @rows
+      i <= cols ? y = 0 : y += 1
+
+      i <= @rows ? x2 = 0 : x2 += 1
+      i <= cols ? y2 = i : y2 = cols
+
+      xitem = x
+      yitem = x2
+      a = []
+      while xitem >= y
+        a << [xitem, yitem]
+        xitem -= 1
+        yitem += 1
+      end
+      tblcoordinates << a
+    end
+    tblcoordinates.pop # sobra ultimo elemento , ver si se puede reducir @rows a -1
+    tblcoordinates = get_coordinates(tblcoordinates)
+    merge_tblcoords(tblcoordinates)
   end
+
   def get_coordinates(tblcoordinates)
     word = {str: [], array: []}
     result = []
