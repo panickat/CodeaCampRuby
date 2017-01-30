@@ -1,6 +1,5 @@
 class Cuadricula
   def formato(str,_player_color,_background)
-    require "colorize"
     str.ljust(3).colorize(_player_color).colorize( :background => _background)
   end
   def background(_background)
@@ -9,9 +8,17 @@ class Cuadricula
   def player_color(_player_color)
     _player_color == :black ? :red : :black
   end
+  def background2(_background)
+    _background == :cyan ? :light_yellow : :cyan
+  end
+  def player_color2(_player_color)
+    _player_color == :light_yellow ? :cyan : :light_yellow
+  end
 end
 
 class Board < Cuadricula
+  require "colorize"
+  
   def initialize(cols,a)
     @array_tomatch = a[0]
     @cols = cols
@@ -27,17 +34,18 @@ class Board < Cuadricula
     out
   end
   def match_toarray!
-    match2 = {a: [], col: []}
+    _player_color = :light_yellow
+    _background = :cyan
+    match2 = []
     # get vertical coords
     for i in 0..@cols
-      match2[:a] << (0..@rows).to_a.product([i])
-      match2[:col] << i
+      match2 << (0..@rows).to_a.product([i])
     end
 
     word = {str: [], array: []}
     result = []
 
-    match2[:a].each do |line|
+    match2.each do |line|
 
       line.each do |a,b|
         word[:str] << @tbls[:notformated][a][b]
@@ -47,9 +55,11 @@ class Board < Cuadricula
       result << kick_badchars(word) if include?(word[:str].join) == true
       word = {str: [], array: []}
     end
-
+    # Separar a otro metodo para que reciba todos los tipos de match
     result.flatten(1).each do |x,y|
-      @tbls[:formated][x][y] = formato(@tbls[:formated][x][y],:white,:black)
+      _background = background2(_background)
+      _player_color = player_color2(_player_color)
+      @tbls[:formated][x][y] = formato(@tbls[:formated][x][y],_player_color,_background)
     end
   end
 
@@ -128,3 +138,4 @@ puts board
 board.match_toarray!
 puts " "
 puts board
+#String.color_samples
