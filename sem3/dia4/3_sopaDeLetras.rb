@@ -8,12 +8,6 @@ class Cuadricula
   def player_color(_player_color)
     _player_color == :black ? :red : :black
   end
-  def background2(_background)
-    _background == :cyan ? :light_yellow : :cyan
-  end
-  def player_color2(_player_color)
-    _player_color == :light_yellow ? :cyan : :light_yellow
-  end
 end
 
 class Board < Cuadricula
@@ -31,6 +25,7 @@ class Board < Cuadricula
     #format_str(@board_template[1]).inject {|memo,sum| memo + sum +["\n"] }.join # La ultima linea no suma salto de linea
     out = ""
     @tbls[:formated].each {|line| out += line.join + "\n"}
+    puts " "
     out
   end
   def match_toarray!
@@ -94,13 +89,8 @@ class Board < Cuadricula
     result
   end
   def merge_tblcoords(tbl_tomerge)
-    _player_color = :light_yellow
-    _background = :cyan
-
     tbl_tomerge.flatten(1).each do |x,y|
-      _background = background2(_background)
-      _player_color = player_color2(_player_color)
-      @tbls[:formated][x][y] = formato(@tbls[:formated][x][y],_player_color,_background)
+      @tbls[:formated][x][y] = @tbls[:formated][x][y].sub("31","93").sub("30","93")
     end
   end
 
@@ -177,6 +167,12 @@ end
 board = Board.new(5,[["POEMA", "CANCION", "RONDAS", "RIMAS"],"POEMAXCXXXXAXXSXNXAAXCMXDXIXXNROXXOXNXXR"])
 puts board
 board.match_toarray!
-puts " "
 puts board
-#String.color_samples
+board = Board.new(5,[["MANGO", "SANDIA", "MELON", "PLATANO"],"XXXXPXXXXLXAMXAXIEXTXDLXAXNOXNMANGOXSXXX"])
+puts board
+board.match_toarray!
+puts board
+board = Board.new(5,[["ROJO", "VERDE", "AZUL", "NEGRO"],"OJORXXXXXXXEXXOXDXRXXRGLXXEXUXNVXZXXXXAX"])
+puts board
+board.match_toarray!
+puts board
