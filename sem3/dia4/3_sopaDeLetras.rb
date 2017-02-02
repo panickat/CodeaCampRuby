@@ -60,7 +60,12 @@ Consejos
 Pregúntate cual es la manera más fácil en la que puedes guardar tu tablero (string, array, nested-array).
 Refactoriza tu código, estarás realizando una y otra vez procesos muy similares, lo único que cambiará será el orden de los datos.
 =end
-class Cuadricula
+class Object
+    def dimension
+        self.class == Array ? 1 + self[0].dimension : 0
+    end
+end
+class Cuadricula < Object
   def formato(str,_player_color,_background)
     str.ljust(3).colorize(_player_color).colorize( :background => _background)
   end

@@ -20,38 +20,57 @@ class Board < Cuadricula
   end
 
   def to_s
-    "try to print a board, what does this method do?"
-    #format_str(@board_template[1]).inject {|memo,sum| memo + sum +["\n"] }.join # La ultima linea no suma salto de linea
     out = ""
+    #format_str(@board_template[1]).inject {|memo,sum| memo + sum +["\n"] }.join # La ultima linea no suma salto de linea
     @tbls[:formated].each {|line| out += line.join + "\n"}
-    puts " "
     out
   end
-  def match_toarray!
-    cols = @cols - 1
-    #get vertical coords
-    tblcoordinates = []
-    for i in 0..cols
-      tblcoordinates << (0..@rows).to_a.product([i])
-    end
-    vcoordinates = get_coordinates(tblcoordinates)
-
-    # get horizontal coords
-    tblcoordinates = []
-    for i in 0..@rows
-      tblcoordinates << [i].product((0..cols).to_a)
-    end
-    hcoordinates = get_coordinates(tblcoordinates)
-
-    #get squere coordinates
-    get_sqrcoordinates; exit
-    #solve!({horizontal: hcoordinates, vertical: vcoordinates, squer: sqrcoordinates})
+  def solve!
+    l = 0
+    while l < 100
+    l += 1
+    p "************* #{l} *************"
+    get_structure
+    puts to_s
+    gets.chomp
+  end
   end
 
   def get_sqrcoordinates
-    @tbls[:notformated].each do |item|
-      p item
+    #Bug: Este metodo solo funciona en 9x9. Pendiente implementar multi dimension
+    sqr0, sqr1, sqr2, sqr3, sqr4, sqr5, sqr6, sqr7, sqr8 = [], [], [], [], [], [], [], [], []
+    char_count = 0
+    sqrs = {sqr0: [], sqr1: [], sqr2: [], sqr3: [], sqr4: [], sqr5: [], sqr6: [], sqr7: [], sqr8: []}
+    tblrows = @tbls[:notformated].length - 1
+    tblcols = @tbls[:notformated][0].length - 1
+
+    for x in 0..tblrows
+      for y in 0..tblcols
+
+        char_count += 1
+        case char_count
+        when 1..3, 10..12, 19..21
+          sqrs[:sqr0] << [x,y]
+        when 4..6, 13..15, 22..24
+          sqrs[:sqr1] << [x,y]
+        when 7..9, 16..18, 25..27
+          sqrs[:sqr2] << [x,y]
+        when 28..30, 37..39, 46..48
+          sqrs[:sqr3] << [x,y]
+        when 31..33, 40..42, 49..51
+          sqrs[:sqr4] << [x,y]
+        when 34..36, 43..45, 52..54
+          sqrs[:sqr5] << [x,y]
+        when 55..57, 64..66, 73..75
+          sqrs[:sqr6] << [x,y]
+        when 58..60, 67..69, 76..78
+          sqrs[:sqr7] << [x,y]
+        when 61..63, 70..72, 79..81
+          sqrs[:sqr8] << [x,y]
+        end
+      end
     end
+    sqrs
   end
 
   def get_coordinates(tblcoordinates)
@@ -59,8 +78,9 @@ class Board < Cuadricula
     result = []
 
     tblcoordinates.each do |line|
-
+      next if line.empty? == true # checar
       line.each do |a,b|
+        next if line.empty? == true # chacar
         word[:str] << @tbls[:notformated][a][b]
         word[:array] << [a] + [b]
       end
@@ -70,6 +90,7 @@ class Board < Cuadricula
     result
   end
   def merge_tblcoords(tbl_tomerge)
+    p tbl_tomerge; exit
     tbl_tomerge.flatten(1).each do |x,y|
       @tbls[:formated][x][y] = @tbls[:formated][x][y].sub("31","93").sub("30","93")
     end
@@ -127,8 +148,134 @@ class Board < Cuadricula
     end
     @tbls = {formated: tbl_formated, notformated: tbl_notformated}
   end
-end
+  def get_structure
+    cols = @cols - 1
+    #get vertical coords
+    vwhole = []
+    for i in 0..cols
+      vwhole << (0..@rows).to_a.product([i])
+    end
+    vmiss =  get_coordinates(vwhole)
 
+    # get horizontal coords
+    hwhole = []
+    for i in 0..@rows
+      hwhole << [i].product((0..cols).to_a)
+    end
+    hmiss = get_coordinates(hwhole)
+
+    #get squere coordinates 3x3
+    swhole = []
+    get_sqrcoordinates.each {|sqr| swhole << sqr[1]}
+    smiss = get_coordinates(swhole)
+
+    gettrys({hmiss: hmiss, vmiss: vmiss, smiss: smiss, vwhole: vwhole, swhole: swhole })
+  end
+  # only 9x9
+  # ******************** ******************** algorithm Methods ******************** ********************
+  def getline_fromcoords(array)
+    array.collect {|x,y| @tbls[:notformated][x][y].to_i}
+  end
+
+  def lowerabsent(tbl, ttype = "h")
+    result = []
+    case ttype
+    when "h", "v"
+      absent = 9
+    when "s"
+      absent = 3
+    end
+
+    tbl.each_with_index do |line, i|
+
+      if line.length <= absent
+        absent = line.length
+        case ttype
+        when "h"
+          result << {hindex: i, coords: line}
+        when "v"
+          result << {vindex: i, coords: line}
+        when "s"
+          result << {sindex: i, coords: line}
+        end
+      end
+    end
+    result
+  end
+
+  def missto_n(index, tbl = [], ttype = "h")
+    case ttype
+    when "h"
+      list = [1,2,3,4,5,6,7,8,9] - @tbls[:notformated][index].map(&:to_i)
+    when "v", "s"
+      list = [1,2,3,4,5,6,7,8,9] - getline_fromcoords(tbl[index])
+    end
+    list.select! {|n| n > 0}
+
+    case ttype
+    when "h"
+      {hindex: index, numbers: list}
+    when "v"
+      {vindex: index, numbers: list}
+    when "s"
+      {sindex: index, numbers: list}
+    end
+  end
+  def locatecoord_onsquere(coords_absent,stbl)
+    result = []
+    stbl.each_with_index do |sqr, sindex|
+      coords_absent.each do |item|
+        item[:coords].each do |coord|
+          found = sqr.index(coord)
+          result << {item.keys[0] => item[item.keys[0]], sindex: sindex, coord: coord,} if found.nil? == false
+        end
+      end
+    end
+    result
+  end
+  # ******************** ******************** algorithm to solve! ******************** ********************
+  # tcoords[:xmiss] -> tablas en coordenadas con numeros faltantes , tcoords[:xwhole] -> tablas completas en coordenadas
+  def gettrys(tcoords)
+    p tcoords[:hmiss]
+    # Indexa coordenadas de las lineas con menor incognitas
+    hlower_c = lowerabsent(tcoords[:hmiss]) # [{:hindex=>x, :coords=> [[]]
+    vlower_c = lowerabsent(tcoords[:vmiss],"v") # [{:vindex=>x, :coords=>[[]]
+    slower_c = lowerabsent(tcoords[:smiss],"s") # [{:sindex=>x, :coords=>[[]]
+
+    # combierte las coordenadas en numeros -> contiene menor incognitas
+    hlower_n = hlower_c.collect {|line| missto_n(line[:hindex])} # [{:hindex=>0, :numbers=>[3, 4]}, x]
+    vlower_n = vlower_c.collect {|line| missto_n(line[:vindex],tcoords[:vwhole], "v")} # [{:vindex=>0, :numbers=>[3, 4]}, x]
+    #slower_n = slower_c.collect {|line| missto_n(line[:sindex], tcoords[:swhole], "s")} # [{:sindex=>2, :numbers=>[4, 6, 8]}, x]
+
+    # cantidad de incognitas decide si se usa h o v
+    lower_c = hlower_c.length < vlower_c.length ?  hlower_c : vlower_c
+    lower_n = lower_c[0].keys[0][0] == "h" ? hlower_n : vlower_n
+    # le pone cuadro a cada coord y separa coordenadas, una por linea
+    hvindex_sindex_coords = locatecoord_onsquere(lower_c, tcoords[:swhole])
+    sqr_n = hvindex_sindex_coords.collect {|item| missto_n(item[:sindex], tcoords[:swhole],"s")}
+    # buscar que sqr tiene menos coincidencias
+    hvindex_sindex_coords.collect { |main|
+      main[:sqr_options] = sqr_n.collect {|numbers| numbers[:numbers] if main[:sindex] == numbers[:sindex] }.compact.flatten
+      main[:options] = lower_n.collect {|numbers| numbers[:numbers] if main[main.keys[0]] == numbers[numbers.keys[0]] }.compact.flatten
+      main[:reduce] = main[:options] - ([1,2,3,4,5,6,7,8,9] - main[:sqr_options])
+
+    }
+    # numbers[:numbers] if main[main.keys[0]] == numbers[numbers.keys[0]]
+    result = hvindex_sindex_coords.group_by {|g| g[:reduce].length}
+
+    result[1].each do |item|
+
+      case item.keys[0][0]
+      when "h"
+      when "v"
+      end
+      x = item[:coord][0]
+      y = item[:coord][1]
+      @tbls[:notformated][x][y] = item[:reduce][0]
+      @tbls[:formated][x][y] = formato(@tbls[:notformated][x][y].to_s,:red, :yellow)
+    end
+  end
+
+end
 board = Board.new(9,'702806519100740230005001070008000002610204053200000100070400800064078005821503907')
-board.match_toarray!
-puts board
+board.solve!
