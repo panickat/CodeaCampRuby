@@ -28,12 +28,12 @@ class Board < Cuadricula
   def solve!
     l = 0
     while l < 100
-    l += 1
-    p "************* #{l} *************"
-    get_structure
-    puts to_s
-    gets.chomp
-  end
+      l += 1
+      get_structure
+      puts to_s
+      p "************* #{l} *************"
+      gets.chomp
+    end
   end
 
   def get_sqrcoordinates
@@ -78,22 +78,15 @@ class Board < Cuadricula
     result = []
 
     tblcoordinates.each do |line|
-      next if line.empty? == true # checar
       line.each do |a,b|
-        next if line.empty? == true # chacar
+
         word[:str] << @tbls[:notformated][a][b]
         word[:array] << [a] + [b]
       end
       result << kick_badchars(word) # estoy trabajando aqui
       word = {str: [], array: []}
     end
-    result
-  end
-  def merge_tblcoords(tbl_tomerge)
-    p tbl_tomerge; exit
-    tbl_tomerge.flatten(1).each do |x,y|
-      @tbls[:formated][x][y] = @tbls[:formated][x][y].sub("31","93").sub("30","93")
-    end
+    result#.reject {|r| r.empty? == true}
   end
 
   def kick_badchars(word)
@@ -187,6 +180,7 @@ class Board < Cuadricula
     end
 
     tbl.each_with_index do |line, i|
+      next if line.empty? == true
 
       if line.length <= absent
         absent = line.length
@@ -200,7 +194,9 @@ class Board < Cuadricula
         end
       end
     end
-    result
+    arraymin = result.group_by {|g| g[:coords].length}
+    min = arraymin.collect {|x,y| x }.min
+    arraymin[min]
   end
 
   def missto_n(index, tbl = [], ttype = "h")
@@ -236,8 +232,9 @@ class Board < Cuadricula
   # ******************** ******************** algorithm to solve! ******************** ********************
   # tcoords[:xmiss] -> tablas en coordenadas con numeros faltantes , tcoords[:xwhole] -> tablas completas en coordenadas
   def gettrys(tcoords)
-    p tcoords[:hmiss]
     # Indexa coordenadas de las lineas con menor incognitas
+    p "hmiss............"
+    p tcoords[:hmiss]
     hlower_c = lowerabsent(tcoords[:hmiss]) # [{:hindex=>x, :coords=> [[]]
     vlower_c = lowerabsent(tcoords[:vmiss],"v") # [{:vindex=>x, :coords=>[[]]
     slower_c = lowerabsent(tcoords[:smiss],"s") # [{:sindex=>x, :coords=>[[]]
@@ -246,9 +243,10 @@ class Board < Cuadricula
     hlower_n = hlower_c.collect {|line| missto_n(line[:hindex])} # [{:hindex=>0, :numbers=>[3, 4]}, x]
     vlower_n = vlower_c.collect {|line| missto_n(line[:vindex],tcoords[:vwhole], "v")} # [{:vindex=>0, :numbers=>[3, 4]}, x]
     #slower_n = slower_c.collect {|line| missto_n(line[:sindex], tcoords[:swhole], "s")} # [{:sindex=>2, :numbers=>[4, 6, 8]}, x]
-
+    p "****** H vs V *******"
+    p hlower_c.length < vlower_c.length ?  "h < v" : "h > v"
     # cantidad de incognitas decide si se usa h o v
-    lower_c = hlower_c.length < vlower_c.length ?  hlower_c : vlower_c
+    p lower_c = hlower_c.length < vlower_c.length ?  hlower_c : vlower_c
     lower_n = lower_c[0].keys[0][0] == "h" ? hlower_n : vlower_n
     # le pone cuadro a cada coord y separa coordenadas, una por linea
     hvindex_sindex_coords = locatecoord_onsquere(lower_c, tcoords[:swhole])
@@ -263,19 +261,28 @@ class Board < Cuadricula
     # numbers[:numbers] if main[main.keys[0]] == numbers[numbers.keys[0]]
     result = hvindex_sindex_coords.group_by {|g| g[:reduce].length}
 
-    result[1].each do |item|
+    p "*******start Result"
+    reduce_index = result.collect {|x,y| x }.min
+    result[reduce_index].map {|e| p e} # inspect
+    result[reduce_index].map do |item|
 
-      case item.keys[0][0]
-      when "h"
-      when "v"
-      end
-      x = item[:coord][0]
-      y = item[:coord][1]
-      @tbls[:notformated][x][y] = item[:reduce][0]
-      @tbls[:formated][x][y] = formato(@tbls[:notformated][x][y].to_s,:red, :yellow)
+       case item.keys[0][0]
+       when "h"
+         if item[:reduce].length == 1
+         x = item[:coord][0]
+         y = item[:coord][1]
+         @tbls[:notformated][x][y] = item[:reduce][0]
+         @tbls[:formated][x][y] = formato(@tbls[:notformated][x][y].to_s,:red, :yellow)
+       elsif item[:reduce].length > 1
+         # Pregunta en linea vertical
+       end
+       when "v"
+         p "################## - caso vertical pendiente - ###################"; exit
+       end
+
     end
-  end
 
+  end
 end
 board = Board.new(9,'702806519100740230005001070008000002610204053200000100070400800064078005821503907')
 board.solve!
