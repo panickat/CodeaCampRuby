@@ -107,34 +107,30 @@ class LayingHen
 
   # Ages the hen one month, and lays 4 eggs if the hen is older than 3 months
   def age!
-    gets.chomp
-    4.times {@egg << Egg.new( @hatched_hour )}  if @age >= 3
+    4.times {@egg << Egg.new( @hatched_hour )}  if @age > 1
     @age += 1
-    p "age! #{@age} eggs -> #{@egg.length}"
+    #p "age! #{@age} eggs -> #{@egg.length}"
     @age
   end
 
   # Returns +true+ if the hen has laid any eggs, +false+ otherwise
   def any_eggs?
-    gets.chomp
-    p "any_eggs? hen_age #{@age}  eggs ->  #{@egg.length}  #{@egg}"
+    #p "any_eggs? hen_age #{@age}  eggs ->  #{@egg.length}  #{@egg}"
     @egg.length > 0 ? true : false
   end
 
   # Returns an Egg if there are any
   # Raises a NoEggsError otherwise
   def pick_an_egg!
-    @egg.collect {|egg| egg.hatched = @hatched_hour }
-    r = @egg.pop
-    p "pick egg #{r} -> @eggs#{@egg}"
-    p "antes rise r : #{r}"
-    r
+    #p "pick egg #{r} -> @eggs#{@egg}"
+    #p "antes rise r : #{r}"
     raise NoEggsError, "The hen has not layed any eggs" unless self.any_eggs?
     #todo bien se salta el rescue, error lee el rescue
-    r
+    @egg.collect {|egg| egg.hatched = @hatched_hour }
+    @egg.pop
   rescue
     # egg-picking logic goes here
-    p "despues rise r: #{r}"
+    #p "despues rise r: #{r}"
     false
   end
 
@@ -162,8 +158,6 @@ class Egg
   end
 end
 
-debug = false
-
 hen = LayingHen.new
 basket = []
 rotten_eggs = 0
@@ -171,30 +165,28 @@ rotten_eggs = 0
 hen.age! until hen.any_eggs?
 
 puts "Hen is #{hen.age} months old, its starting to laid eggs. \n"
- p "until old #{hen.age}" if debug 
+ #p "until old #{hen.age}"
 until hen.old?
 
   # The time we take to pick up the eggs
-  gets.chomp
-  p "hatched in until "
+
+  #p "hatched in until "
   hours = rand(5)
   hen.increase_hatched_hour(hours)
 
-whilevar = 0
   while hen.any_eggs?
-    whilevar += 1
 
-    p "while"
-    gets.chomp
-    p egg =  hen.pick_an_egg!
-    p "egg piked arriba"
+    #p "while"
+
+    egg =  hen.pick_an_egg!
+    #p "egg piked arriba"
      break unless egg
 
     if egg.rotten?
-      p "roten #{egg}"
+      #p "roten #{egg}"
       rotten_eggs += 1
     else
-      p "basket #{egg}"
+      #p "basket #{egg}"
       basket << egg
     end# if
   end# while
