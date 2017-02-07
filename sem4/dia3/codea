@@ -1,0 +1,701 @@
+ <!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<html>
+<head>
+  <title>CodeaCamp</title>
+  <link data-turbolinks-track="true" href="/assets/application-b0a01177e8cfff02738df7b25a1703ee.css" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="/assets/application-fe9982dfcc7c30c117305692293667d1.js"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="WZ6IX5F1km1URG+04bsOK6UWiL0+fmV6c36UIP06kv8=" name="csrf-token" />
+
+  <link href="/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+
+   
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+
+    <!-- Meta Youtube -->   
+    <meta name="google-site-verification" content="HG0SQdSkxLGDECAV9_lOAPxwizOKC8Qz8MijBUyWlaQ" />   
+
+    <!-- Meta Facebook -->  
+
+    <meta property="og:title" content=CodeaCamp />
+    <meta property="og:site_name" content="Codeacamp"/>
+    <meta property="og:description" content="Escuela de Desarrollo Web"/>
+    <meta property="og:image" content="http://www.codea.mx/assets/Facebook_Main-d691943bbc707149cdd67df6e7ea1ba2.png"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
+
+
+<!-- www.crazyegg.com -->
+    <script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0054/3634.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+    
+</head> 
+
+
+<body class="home-page">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MHZG2X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MHZG2X');</script>
+<!-- End Google Tag Manager --> 
+
+
+<!-- ******HEADER****** -->
+<header id="header" class="header">
+  <div class="container">
+    <div class="logo">
+      <a href="/">
+        <p class="lplh-115" style="text-align: center;">
+
+<span style="font-size:25px;">
+	<span style="font-family:'Ubuntu', sans-serif;">
+		<span style="color:#ffc842;">
+			{ <strong>CODEA</strong></span><span style="color:#ffffff;">CAMP</span><span style="color:#ffc842;"> }</span></span></span>
+</p>
+
+        
+</a>    </div><!--//logo-->
+    <nav class="main-nav navbar-right" role="navigation">
+      <div id="navbar-collapse" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="nav-item"><a href="https://www.facebook.com/codeacamp" target="_blank"><i class="fa fa-facebook"></i></a></li>
+          <li class="nav-item"><a href="https://twitter.com/codeacamp" target="_blank"><i class="fa fa-twitter"></i></a></li>
+          <li class="active nav-item"><a href="/">Home</a></li>
+          <li class="nav-item"><a href="/faq">Preguntas Frecuentes</a></li>
+          <li class="nav-item"><a data-no-turbolink="true" href="/posts">Blog</a></li>
+          <li class="nav-item"><a data-no-turbolink="true" href="/precios">Precios</a></li>
+          <li class="nav-item nav-item-cta last"><a class="btn btn-cta btn-cta-secondary" href="/contacts/new">Escríbenos</a></li>
+        </ul><!--//nav-->
+      </div><!--//navabr-collapse-->
+    </nav><!--//main-nav-->
+  </div><!--//container-->
+</header><!--//header-->
+
+<!-- Facebook Fan Page: Javascript SDK  -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Nav bar  -->
+<div class="bg-slider-wrapper">
+    <div class="flexslider bg-slider">
+        <ul class="slides">
+            <li class="slide slide-1"></li>
+        </ul>
+    </div>
+</div><!--//bg-slider-wrapper-->        
+
+<!-- ****** Promo Seccion ******  -->
+
+
+<div class="home-form">
+<div class="row text-center">
+
+    <form accept-charset="UTF-8" action="/contacts" class="simple_form contact-form" id="new_contact" method="post" novalidate="novalidate"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="WZ6IX5F1km1URG+04bsOK6UWiL0+fmV6c36UIP06kv8=" /></div>
+    
+    <div class="contact-form-inner col-md-10 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 xs-offset-0">
+    
+    <div class="col-md-7 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 xs-offset-0">
+        <h1 class="title title_promo" style="color:white">Conviértete en un <span class="yellow">Desarrollador Web</span></h1>
+        <h2 style="color:white">ES TIEMPO DE CODEAR</h2>
+    </div>
+
+    <div class="col-md-5 col-sm-12 col-xs-12 col-md-offset-0 col-sm-offset-0 xs-offset-0">     
+        <h4><span class="yellow">¡¡¡Escríbenos!!!</span></h4>
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+            <p><div class="form-group string required contact_name"><input class="string required form-control" id="contact_name" name="contact[name]" placeholder="Nombre" type="text" /></div></p>
+        </div>                    
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+            <p><div class="form-group email required contact_email"><input class="string email required form-control" id="contact_email" name="contact[email]" placeholder="Email" type="email" /></div></p>
+        </div>               
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+            <p><div class="form-group text required contact_message"><textarea class="text required form-control" id="contact_message" name="contact[message]" placeholder="¿Por qué te interesa aplicar o cuáles son tus dudas?" rows="4">
+</textarea></div></p>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+            <p><div class="form-group tel optional contact_phone"><input class="string tel optional form-control" id="contact_phone" name="contact[phone]" placeholder="Déjanos tu teléfono con lada para contactarte" type="tel" /></div></p>
+        </div>
+        <div class="form-group hidden contact_contacto"><input class="hidden form-control" id="contact_contacto" name="contact[contacto]" placeholder="Contacto" type="hidden" /></div>
+                  
+        <div class="col-md-12 col-sm-12 col-xs-12 form-group" id="contact_submit">
+            <input class="btn btn-block btn-primary" name="commit" type="submit" value="Enviar" />
+        </div> 
+        <div class="aviso_link">
+            <a href="/static_pages/aviso_privacidad">Aviso de Privacidad</a>
+        </div>
+    </div>
+    </div>    
+</form>
+</div>
+</div>
+
+
+<div class="sections-wrapper">  
+
+<!-- ****** Explanation Section ****** -->
+<section id="why" class="section why">
+  <div class="container">
+    <h2 class="title text-center">SOMOS EL BOOTCAMP QUE TE ENSEÑA A PROGRAMAR</h2>
+    <br>
+    <center>
+    <img alt="Stopwatch" src="/assets/stopwatch-d45e19c3b45dd377c78e0ce86ccf210a.png" style="height: 100px;" />
+    </center>
+    <br>
+    <p class="intro"><span class="yellow">El mundo está cambiando gracias al código...</span> Es tiempo de codear porque lo que realmente te va a hacer un programador, uno bueno, un gurú de la programación, son las horas de práctica.</p>
+    <br><br>
+<!--     <center>
+      <a href="/contacts/new">
+        <h2>Inscríbete en nuestra siguiente generación<br>
+          <span class="yellow">Últimas Promociones</span>
+        </h2>
+      </a>
+    </center>   -->  
+  </div><!--//container-->
+</section><!--//explanation-->
+       
+ 
+<!-- ****** Poryects Section ****** -->
+    <section class="features-tabbed back_grey section">
+        <div class="container">
+            <h2 class="title text-center">¿Qué puedes lograr si dedicas horas estudiando en Codea?</h2>
+            
+            <p class="intro lograr">Los siguientes videos son algunos de los proyectos de nuestros alumnos. Todo lo que verás lo lograron con tan solo dos semanas de desarrollo en parejas, aplicando las habilidades que aprendieron después de 10 semanas de aprendizaje de tiempo completo con nosotros. </p>
+            <div class="row">
+                <div class=" text-center col-md-12 col-sm-10 col-xs-12 col-md-offset-0 col-sm-offset-1 col-xs-offset-0">
+				    <div class="row item">
+
+				      <figure class="embed-responsive figure col-md-6 col-sm-12 col-xs-12 col-sm-offset-0 col-xs-offset-0">
+				        <!-- <img class="img-responsive" src="http://qph.cf.quoracdn.net/main-qimg-fcb98c13e50b5880858ad06928c24ebe" alt="" /> -->
+				        <br><br><br><br><br>
+				        <img alt="Nacho" class=" img-responsive project_video" data-video="https://www.youtube.com/embed/_FV84l29rUU?autoplay=1" src="/assets/projects/nacho-655a67ffbb19d0fd20673723cd49abe4.png" />
+
+								<!-- 				        <iframe class="embed-responsive-item" width="100%" src="https://www.youtube.com/embed/_FV84l29rUU" frameborder="0" allowfullscreen></iframe> -->
+				      </figure>
+				      
+				      <figure class="embed-responsive figure col-md-6 col-sm-12 col-xs-12 col-sm-offset-0 col-xs-offset-0">
+				        <!-- <img class="img-responsive" src="http://qph.cf.quoracdn.net/main-qimg-fcb98c13e50b5880858ad06928c24ebe" alt="" /> -->
+				        <br><br><br><br><br>
+				        <img alt="Kyv" class=" img-responsive project_video" data-video="https://www.youtube.com/embed/EXC09O1leNM?autoplay=1" src="/assets/projects/kyv-9bab26ac59a84d75b8bf4aeed1ecb150.png" />
+				        
+				       <!--  <iframe class="embed-responsive-item" width="100%" src="https://www.youtube.com/embed/EXC09O1leNM" frameborder="0" allowfullscreen></iframe> -->
+				      </figure>
+				    </div><!--//item-->
+                </div><!--//col-md-x-->
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//curriculum--> 
+
+
+<!-- ****** Learning Section ****** -->
+<section class="steps section">
+    <div class="container">
+        <h2 class="title text-center">¿Qué tienes que aprender?</h2>
+
+<p class="intro">Estas son algunas de las tecnologías y habilidades que aprenderás en Codea para convertirte en un <span class="yellow">guru de la programación.</span></p>
+
+        <div class="row">
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Ruby" src="/assets/learning_icons_jid/ruby-0082a1a9d816a6b72a3b59e316ef41e3.png" /></span><br /><span class="text">Fundamentos de Programación en Ruby</span></h3>
+                 <p>Aprende cómo navegar con la interfaz de línea de comandos y aprende a resolver problemas técnicos y crear algoritmos con Ruby.</p>
+             </div><!--//step-->
+
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Js" src="/assets/learning_icons_jid/js-8f2bc87e4e724f9a874da77e33826e8b.png" /></span><br /><span class="text">JavaScript Orientado a Objetos</span></h3>
+                 <p>Agrega interactividad y dinamismo a tus apps utilizando Ajax, JQuery y otras plataformas avanzadas de frontend.</p>
+             </div><!--//step-->
+
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Html5" src="/assets/learning_icons_jid/html5-64fd096a3538a312783dd3494e987359.png" /></span><br /><span class="text">HTML5 y CSS</span></h3>
+                 <p>Aprende a comprender los fundamentos de una marcación semántica y haz que tus aplicaciones resalten a través de un diseño moderno.</p>
+             </div><!--//step-->
+        </div><!--//row-->
+
+        <div class="row">
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Agile" src="/assets/learning_icons_jid/agile-223ea0b7fdaa994674c08ef7747444ba.png" /></span><br /><span class="text">Desarrollo Ágil</span></h3>
+                 <p>Desarrolla e itera sobre tus proyectos en equipo manteniendo control sobre el valor y los costos.</p>
+             </div><!--//step-->
+
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Tested" src="/assets/learning_icons_jid/tested-26222d7182f9f6289184e0dbfc0dd5d4.png" /></span><br /><span class="text">Desarrollo Guiado por Pruebas</span></h3>
+                 <p>Aprende metodologías para construir aplicaciones sólidas y fáciles de mantener.</p>
+             </div><!--//step-->
+
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Git" src="/assets/learning_icons_jid/git-356b8ce0663bfaa111a1befc562ab808.png" /></span><br /><span class="text">Git y Controlador de Versiones</span></h3>
+                 <p>Conoce herramientas para administrar el desarrollo de código a través de un controlador de versiones y mejora tu trabajo en equipo.</p>
+             </div><!--//step-->
+        </div><!--//row-->
+
+        <div class="row">
+            
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Rails" src="/assets/learning_icons_jid/rails-97fb51a589ac369148d205e647f46954.png" /></span><br /><span class="text">Rails la Plataforma de Desarrollo de Apps</span></h3>
+                 <p>Aprende una de las mejores maneras de construir aplicaciones web modernas, sustentadas por un backend y bases de datos.</p>
+             </div><!--//step-->
+
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Ee" src="/assets/learning_icons_jid/ee-415e0b87be395343baf6f978213d542f.png" /></span><br /><span class="text">Aprendizaje Permanente</span></h3>
+                 <p>Conviértete en una persona automotivada que persigue voluntariamente nuevos aprendizajes y el conocer nuevos conceptos, para poder estar al día con nuevas tecnologías.</p>
+             </div><!--//step-->
+
+             <div class="step text-center col-md-4 col-sm-4 col-xs-12">
+                 <h3 class="title"><span class="learning_icon"><img alt="Skills" src="/assets/learning_icons_jid/skills-5d5ee3ff9624e2497df1538faf6f35ff.png" /></span><br /><span class="text">Habilidades Sociales</span></h3>
+                 <p>Involúcrate y practica programación en parejas, habilidades comunicativas de negocio, revisión de código, retroalimentación y más.  </p>
+             </div><!--//step-->
+
+        </div><!--//row-->
+        
+        <div class="text-center"><a class="btn btn-cta btn-cta-primary" href="/contacts/new">Escríbenos no pierdes nada</a></div>
+        
+    </div><!--//container-->        
+</section><!--//learning-->
+ 
+
+<!-- ****** Curriculum Section ****** -->
+    <section class="features-tabbed back_grey section">
+        <div class="container">
+            <h2 class="title text-center" style="color:white">Programa</h2>
+            <h2 class="title">lo que hace a un buen programador es el <span style="color:white;">Tiempo</span> de práctica y experiencia que dedica a <span style="color:white;">Codear</span></h2>
+            <div class="row">
+                <div class=" text-center col-md-12 col-sm-10 col-xs-12 col-md-offset-0 col-sm-offset-1 col-xs-offset-0">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs text-center codea_tag" role="tablist">
+                        <li class="active"><a href="#feature-1" role="tab" data-toggle="tab"><span class="hidden-sm hidden-xs">NEWBIE</span></a></li>
+                        <li><a href="#feature-2" role="tab" data-toggle="tab"><span class="hidden-sm hidden-xs">ROOKIE</span></a></li>
+                        <li><a href="#feature-3" role="tab" data-toggle="tab"><span class="hidden-sm hidden-xs">WIZARD JR</span></a></li>
+                        <li class="last"><a href="#feature-4" role="tab" data-toggle="tab"><span class="hidden-sm hidden-xs">WHITEHAT JR</span></a></li>
+                    </ul><!--//nav-tabs-->
+                    
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="feature-1">
+                            <h3 class="title sr-only">Básico</h3>
+                            <h3 class="title hidden-md hidden-lg hidden-xl">NEWBIE</h3>
+                            <div class="desc text-left">
+                                <p class="box">Para convertirte en Newbie aprenderás lo más básico de la programación y desarrollo web. Al finalizar está fase de preparación habrás desarrollado la lógica necesaria para escribir programas básicos de manera ordenada y adicionalmente poder llegar a crear páginas web simples.</p>
+                                <ul class="list-unstyled">
+                                    <li>HTML y CSS Básico</li>
+                                    <li>Lo básico de la línea de comandos</li>
+                                    <li>Lenguaje Ruby y sintaxis</li>
+                                    <li>Variables</li>
+                                    <li>Operaciones aritméticas básicas</li>
+                                    <li>Métodos de String más usados</li>
+                                    <li>Control de flujo en Ruby</li>
+                                    <li>Iteradores en Ruby</li>
+                                    <li>Arreglos y Hashes</li>
+                                    <li>Métodos</li>
+                                    <li>Fundamentos de OPP (Programación Orientada a Objetos)</li>
+                                    <li>Módulo enumerable de Ruby</li>        
+                                </ul>                                
+                            </div><!--//desc-->
+                        </div><!--//tab-pane-->
+                        <div class="tab-pane" id="feature-2">
+                            <h3 class="title sr-only">Programación</h3>
+                            <h3 class="title hidden-md hidden-lg hidden-xl">ROOKIE</h3>
+                            <div class="desc text-left">
+                                <p class="box">Para convertirte en Rookie podrás obtener bases sólidas para poder programar y resolver problemas y algoritmos básicos con Ruby. Al finalizar esta etapa habrás desarrollado la habilidad para expresar tus soluciones e ideas en código. Finalmente, aprenderás a trabajar con bases de datos relacionales y aprenderás como funciona de manera simple un navegador. <br><br> El objetivo de esta fase es crear conocimientos sólidos de programación que harán que seas un gran desarrollador web. </p>
+                                
+
+                             <div class="table-responsive cv_table">  
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Ruby</th>
+                                            <th>Programación Orientada a Objetos</th>
+                                            <th>Bases de Datos</th>
+                                            <th>Funcionamiento básico de un Navegador</th>
+                                            <th>Git y GitHub</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <ul>
+                                                    <li> Sintaxis, Primitivos y Operadores</li>
+                                                    <li> Pseudocódigo</li>
+                                                    <li> Lógica de bifurcación</li>
+                                                    <li> Ejercicios de Lógica </li>
+                                                    <li> Métodos Nativos de Ruby</li>
+                                                    <li> Métodos Personalizados</li>
+                                                    <li> Ciclos y Enumerables</li>
+                                                    <li> Expresiones Regulares</li>
+                                                    <li> Algoritmos Básicos </li>
+                                                    <li> Recursión</li>
+                                                    <li> Interacción con la Consola</li>
+                                                    <li> Refactorización </li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    <li>Clases e Instancias</li>
+                                                    <li>Tipos de Variables</li>
+                                                    <li>Getters, Setters y attr_accesorss</li>
+                                                    <li>Métodos Públicos y Privados </li>
+                                                    <li>La Palabra "self" en Clases</li>
+                                                    <li>Herencia</li>
+                                                    <li>Análisis y Almacenamiento de Imágenes</li>
+                                                    <li>Lo Básico de ARGV</li>
+                                                    <li>Analizando HTML</li>
+                                                    <li>Comprendiendo los Navegadores</li>
+                                                    <li>Arquitectura de Software y el Patrón MVC</li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    <li>Relaciones entre Tablas</li>
+                                                    <li>Consultas Básicas de SQL</li>                  
+                                                    <li>Diseño, Creación y Consultas de Bases de Datos con SQLite</li>
+                                                    <li>Comprendiendo un ORM (Mapeo Objeto Relacional)</li>
+                                                    <li>Active Record</li>
+                                                    <li>Asociaciones de Active Record entre Modelos </li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    <li>Genera peticiones a un servidor</li>
+                                                    <li>Lee, Analiza sintácticamente HTML y CSS</li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    <li>Repositorios</li>
+                                                    <li>Comandos básicos</li>
+                                                    <li>Branches en Git</li>
+                                                </ul>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div><!--//table-responsive-->
+
+                            </div><!--//desc-->
+                        </div><!--//tab-pane-->
+                        <div class="tab-pane" id="feature-3">
+                            <h3 class="title sr-only">Desarrollo Web</h3>
+                            <h3 class="title hidden-md hidden-lg hidden-xl">WIZARD JR</h3>
+                            <div class="desc text-left">
+                            <p class="box">Para llegar a ser un Wizard Jr aprenderás a hacer páginas y aplicaciones web. Al finalizar esta fase comprenderás como funciona el Back y Front de las aplicaciones, estarás usando HTML, CSS, JavaScript y jQuery para crear páginas y apps. Crearás aplicaciones con bases de datos complejas y utilizando Ajax para mejorar la UX. Con todo esto acabarás comprendiendo el diseño y construcción organizada de aplicaciones web utilizando plataformas profesionales.</p>
+                            <div class="table-responsive cv_table">  
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Fundamentos Web</th>
+                                        <th>Front-End</th>
+                                        <th>Aplicaciones Web con Rails</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                          <ul>
+                                            <li>Diseño con CSS</li>
+                                            <li>Navegación con CSS</li>
+                                            <li>Pestañas con CSS</li>
+                                            <li>Paginación con CSS y JavaScript</li>
+                                            <li>Métodos de HTTP y Formas </li>               
+                                            <li>Sinatra, una plataforma para Desarrollo Web</li>             
+                                            <li>Enrutamiento</li>
+                                            <li>Peticiones Síncronas y Asíncronas con AJAX</li>
+                                            <li>Restricciones y Validaciones en la Base de Datos y Modelos</li>                
+                                          </ul>
+                                        </td>
+                                        <td>
+                                          <ul>
+                                            <li>Estructura de las Páginas</li>
+                                            <li>Menús Desplegables</li>
+                                            <li>Carrusel de Imágenes</li>
+                                            <li>JQuery</li>
+                                            <li>JavaScript</li>
+                                            <li>Eventos Asíncronos en JavaScript</li>
+                                            <li>Funciones de Retrollamada (Callback functions)</li>
+                                            <li>Validación de Formularios</li>
+                                            <li>Autenticación y Autorización</li>
+                                            <li>Carga de Imágenes</li>             
+                                          </ul>
+                                        </td>
+                                        <td>
+                                          <ul>
+                                            <li>Introducción a Rails</li>
+                                            <li>Enrutamiento y Controladores</li>
+                                            <li>Vistas y Funciones de Apoyo</li>
+                                            <li>Vistas y Subvistas</li>
+                                            <li>jQuery y AJAX con Rails</li>
+                                            <li>Despliegue con Heroku</li>
+                                          </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div><!--//table-responsive-->                                    
+                          </div><!--//desc-->                                          
+                        </div><!--//tab-pane-->
+                        <div class="tab-pane" id="feature-4">
+                            <h3 class="title sr-only">Avanzado y Proyecto</h3>
+                            <h3 class="title hidden-md hidden-lg hidden-xl">WHITEHAT JR</h3>
+                            <div class="desc text-left">
+                                <p class="box">Con el fin de ser WhiteHat utilizarás Ruby on Rails y procesos ágiles para crear aplicaciones web robustas e integrarlas con otros servicios y datos de terceros en la web. Al terminar está fase tendrás la confianza y el conocimiento para hacer aplicaciones profesionales y de más calidad. Reforzarás el crear aplicaciones con Javascript y comprenderás la importancia de hacer pruebas y como funciona el Desarrollo Guiado por Pruebas (TDD). <br><br> Finalmente desarrollarás un proyecto utilizando todos los conocimientos que has adquirido, bajo nuestro apoyo y asesoría.
+
+                                </p>
+                                
+                                <div class="table-responsive cv_table">  
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Pruebas, APIs y OOJS</th>
+                                            <th>Diseño de Producto (Proyecto Final)</th>
+                                            <th>Extra</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                              <ul>                                  
+                                                <li>Diseño con CSS Avanzado</li>
+                                                <li>Apps con Comentarios</li>
+                                                <li>APIs , OAuth con Twitter</li> 
+                                                <li>Colas de Procesos y Procesos en Segundo Plano</li> 
+                                                <li>JavaScript Orientado a Objetos y JQuery Avanzado</li>
+                                                <li>Mejora del Desempeño de Aplicaciones, Caching y Diseño</li> 
+                                                <li>Desarrollo Guiado por Pruebas en Rails</li> 
+                                                <li>Pruebas con RSpec</li>
+                                                <li>Pruebas de Front-End con Capybara</li>
+                                                <li>Pruebas Unitarias </li>
+                                                <li>Desarrollo Guiado por Pruebas (TDD)</li>
+                                                <li>JavaScript Orientado a Objetos y JQuery Avanzado</li>
+                                                <li>Performance y Database</li> 
+                                              </ul>
+                                            </td>
+                                            <td>
+                                              <ul>
+                                                <li>Crea una Aplicación Desde Cero Aplicando Todo lo que Aprendiste</li>
+                                                <li>SCRUM y Desarrollo Ágil</li>
+                                              </ul>
+                                            </td>
+                                            <td>
+                                              <ul>
+                                                <li>Asistencia para encontrar empleo</li>
+                                                <li>Crea tu CV</li>
+                                                <li>Mejora tu Ruby</li>
+                                                <li>Mejora tu Portafolio de GitHub</li>
+                                                <li>Aplica a Diferentes Vacantes</li>
+                                                <li>Cómo Presentarte y Comportarte en tu Entrevista</li>
+                                                <li>Negocia tu Oferta de Trabajo</li>
+                                              </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div><!--//table-responsive-->
+                            </div><!--//desc-->
+                        </div><!--//tab-pane-->
+                    </div><!--//tab-content-->
+                </div><!--//col-md-x-->
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//curriculum--> 
+ 
+
+<!-- ******Testimonials Section****** -->
+<section class="section testimonials">
+    <div class="container">
+        <h2 class="title text-center">¿Qué están diciendo las empresas y las personas?</h2>
+        <div id="testimonials-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#testimonials-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#testimonials-carousel" data-slide-to="1"></li>
+                <li data-target="#testimonials-carousel" data-slide-to="2"></li>
+            </ol><!--//carousel-indicators-->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <figure class="profile"><img src="assets/people/Mauricio.png" alt="" /></figure>
+                    <div class="content">
+                        <blockquote>
+                        <i class="fa fa-quote-left"></i>
+                        <p>Acabamos de contratar a una Ex-alumna. Estoy sumamente contento con el trabajo que se ha hecho en relación a los alumnos, demuestran gran estructura en su manera de trabajar, la eficiencia y forma de hacer las cosas optimiza mucho el día a día de la agencia y nuestros procesos.</p>
+                        </blockquote>
+                        <p class="source">
+                            <a href="https://www.linkedin.com/pub/maurico-martinez-curiel/21/181/6b8?trk=pub-pbmap" target="_blank">Mauricio Martinez, Cubos Web</a>                                
+                            <br /><span class="title"></span></p>
+                    </div><!--//content-->                         
+                </div><!--//item-->
+                <div class="item ">
+                    <figure class="profile"><img src="assets/people/Daniel_Lacy.png" alt="" /></figure>
+                    <div class="content">
+                        <blockquote>
+                        <i class="fa fa-quote-left"></i>
+                        <p>Quedé impresionado del nivel técnico y de preparación que tienen los graduados del programa. Muchas felicidades por la graduación.</p>
+                        </blockquote>
+                        <p class="source">
+                            <a href="https://www.linkedin.com/profile/view?id=ADEAABAv5UoBnsR6pxi3xE0F2g70HvR0vx6fP44&authType=NAME_SEARCH&authToken=RxHg&locale=es_ES&srchid=1109607381440109672010&srchindex=1&srchtotal=71&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A1109607381440109672010%2CVSRPtargetId%3A271574346%2CVSRPcmpt%3Aprimary%2CVSRPnm%3Atrue%2CauthType%3ANAME_SEARCH" target="_blank">Daniel Lacy, Endevor México</a>
+                            
+                            <br /><span class="title"></span></p>
+                    </div><!--//content-->                         
+                </div><!--//item-->
+                <div class="item">
+                    <figure class="profile"><img src="assets/people/Abdon.png" alt="" /></figure>
+                    <div class="content">
+                        <blockquote>
+                        <i class="fa fa-quote-left"></i>
+                        <p>El nivel de los alumnos a primera instancia se lo ve alto. Noté un buen nivel de comprensión de Rails, fundamentos de decisiones, trabajo en equipo y pasión por lo que están haciendo.</p>
+                        </blockquote>
+                        <p class="source">
+                            <a href="https://www.linkedin.com/in/abdonnacif" target="_blank">Abdon Nacif, NEXU</a>
+                            <br /><span class="title"></span></p>
+                    </div><!--//content-->                         
+                </div><!--//item-->                         
+                                                           
+            </div><!--//carousel-inner-->
+            
+        </div><!--//carousel-->
+    </div><!--//container-->
+</section><!--//testimonials--> 
+
+<!-- ******Empresas Section****** -->
+<section class="section press">
+    <div class="container text-center">
+        <h2 class="title">Empresas Mexicanas contratando Desarrolladores</h2>
+        <ul class="press-list list-inline row">
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="" target="https://bayonet.io/"><img class="img-responsive" src="assets/pressmex/press-20.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://query.la" target="_blank"><img class="img-responsive" src="assets/pressmex/press-21.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4 xs-break"><a href="https://www.intelimetrica.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-22.png" alt="" /></a></li>                   
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.herbalife.com.mx/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-23.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.pickwin.net/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-24.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.megareto.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-25.png" alt="" /></a></li>                    
+        </ul><!--//press-list-->
+        <br><br>
+        <ul class="press-list list-inline row">
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.innku.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-1.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://aliada.mx/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-7.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4 xs-break"><a href="http://opi.la/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-3.png" alt="" /></a></li>                   
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.aventones.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-4.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.codealab.mx/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-5.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://www.easybroker.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-6.png" alt="" /></a></li>                    
+        </ul><!--//press-list-->  
+        <br><br>
+        <ul class="press-list list-inline row">
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://resuelvetudeuda.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-13.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://playbusiness.mx/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-12.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4 xs-break"><a href="" target="_blank"><img class="img-responsive" src="assets/pressmex/press-11.png" alt="" /></a></li>                   
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.likeable.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-10.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://ingenia.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-9.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://kamikazelab.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-8.png" alt="" /></a></li>                    
+        </ul><!--//press-list-->
+        <br><br>
+        <ul class="press-list list-inline row">
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://cubosweb.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-14.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://curadeuda.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-15.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4 xs-break"><a href="http://www.endeavor.org.mx/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-16.png" alt="" /></a></li>                   
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://nearsoft.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-17.png" alt="http://www.endeavor.org.mx/" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.nexuauto.com/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-18.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://www.pagofacil.net/" target="_blank"><img class="img-responsive" src="assets/pressmex/press-19.png" alt="" /></a></li>                    
+        </ul><!--//press-list--> <br><br>              
+    </div><!--//container-->
+    <br><br><br>
+    <div class="container text-center">
+        <h2 class="title">Empresas reconocidas utilizando Ruby on Rails</h2>
+        <ul class="press-list list-inline row">
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://twitter.com/?lang=en" target="_blank"><img class="img-responsive" src="assets/press/press-1.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.groupon.com.mx/" target="_blank"><img class="img-responsive" src="assets/press/press-2.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4 xs-break"><a href="http://www.huluenmexico.com/" target="_blank"><img class="img-responsive" src="assets/press/press-3.png" alt="" /></a></li>                   
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.yellowpages.com/" target="_blank"><img class="img-responsive" src="assets/press/press-4.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://basecamp.com/" target="_blank"><img class="img-responsive" src="assets/press/press-5.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://github.com" target="_blank"><img class="img-responsive" src="assets/press/press-6.png" alt="" /></a></li>                    
+        </ul><!--//press-list-->
+        <ul class="press-list list-inline row last">
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://es.shopify.com/" target="_blank"><img class="img-responsive" src="assets/press/press-7.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://www.scribd.com/" target="_blank"><img class="img-responsive" src="assets/press/press-8.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4 xs-break"><a href="http://www.slideshare.net/" target="_blank"><img class="img-responsive" src="assets/press/press-9.png" alt="" /></a></li>                   
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.amazon.com/" target="_blank"><img class="img-responsive" src="assets/press/press-10.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="http://www.bbc.com/" target="_blank"><img class="img-responsive" src="assets/press/press-11.png" alt="" /></a></li>
+            <li class="col-md-2 col-sm-2 col-xs-4"><a href="https://www.jpmorgan.com/" target="_blank"><img class="img-responsive" src="assets/press/press-12.png" alt="" /></a></li>                    
+        </ul><!--//press-list-->
+        
+    </div><!--//container-->
+</section><!--//empresas-->
+
+<!-- ******Address Section****** -->
+<section id="cta-section" class="section cta-section text-center home-cta-section">
+    <div class="container">
+       <h2 class="title">¿Estás listo para convertirte en un Desarrollador Web?</h2><br><br>
+       <p class="intro">México necesita MÁS programadores</p>
+       <p class="intro"><a class="btn btn-cta btn-cta-primary" href="/contacts/new" >Contáctanos</a></p>
+    </div><!--//container-->
+</section><!--//cta-section-->
+<section  class="section address">
+  <div class="container">
+    <p class="intro">Dirección: Av Sonora 84-A, Roma Norte, Cuauhtémoc, 06700, Ciudad de México, D.F. Entre: Durango y Colima</p> 
+    <p class="intro">Tel: 55 6726 7075</p>
+  </div><!--//container-->
+</section><!--//press-->
+</div><!--//address-->
+
+<!-- ******Facebook Section****** -->
+<section class="steps section">
+    <div class="container ">
+        <div class="col-md-offset-3">
+            <div class="fb-page" data-href="https://www.facebook.com/codeacamp" data-tabs="timeline, messages" data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/codeacamp"><a href="https://www.facebook.com/codeacamp">Codeacamp</a></blockquote></div></div>           
+        </div>
+        </div> 
+    </div><!--//container-->
+</section><!--//facebook--> 
+
+              
+
+
+
+
+
+    
+
+    
+            
+
+
+
+
+  <!-- <nav class="navbar navbar-default navbar-fixed-bottom" id="inscribete" >
+	<a href=>
+    <h2>Conviértete en un Desarrollador Web 
+en 12 semanas</h2>
+	</a>
+<!-- 	<a href="/contacts/new">	
+	  <h2 class="yellow">¡¡Aplica ya a Promociones y Financiamiento!!</h2>
+	</a> -->
+<!-- </nav> --> 
+
+<div id"page_end"></div>
+</body>
+</html>
