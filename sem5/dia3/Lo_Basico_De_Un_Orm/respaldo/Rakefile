@@ -1,23 +1,13 @@
+require 'faker'
+
 task :console do
   exec "irb -r ./app.rb"
 end
 
-task :purge do
-  #Rake::Task["db:drop"].invoke  # SQLite3::IOException: disk I/O error # Revisar error por Delayed
-  Rake::Task["db:setup"].invoke
-  Rake::Task["db:seed"].invoke
-end
-
-task :test do
-  Rake::Task["purge"].invoke
-  ruby 'test.rb'
-end
-
 namespace :db do
-require_relative 'app'
-
   task :seed do
-    require 'faker'
+    require_relative 'app'
+
     chef_ids = (1..20).map do
       Chef.create(first_name:  Faker::Name.first_name,
                   last_name:   Faker::Name.last_name,
@@ -35,10 +25,12 @@ require_relative 'app'
       end
     end
 
-    print '. seed done '
+    puts 'done'
   end
 
   task :setup do
+    require_relative 'app'
+
     print "Creating database at #{MiniActiveRecord::Model.filename}..."
 
     MiniActiveRecord::Model.execute(
@@ -66,11 +58,10 @@ require_relative 'app'
       );
     SQL
 
-    puts 'setup done'
+    puts 'done'
   end
 
   task :drop do
     File.delete('./db/chefs.db') if File.exist?('./db/chefs.db')
-    print ' drop done '
   end
 end

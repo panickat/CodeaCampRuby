@@ -6,8 +6,7 @@ APP_ROOT = File.expand_path(__dir__)
 # If a key doesn't response to to_sym, do nothing
 class Hash
   def symbolize_keys
-    puts "symbolize_keys"
-    p dup.symbolize_keys!
+    dup.symbolize_keys!
   end
 
   def symbolize_keys!

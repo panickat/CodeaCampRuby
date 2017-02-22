@@ -3,7 +3,83 @@ module MiniActiveRecord
   class NotConnectedError < StandardError; end
 
   class Model
+    # Codigo refactorizado de Chef y Meal
 
+    # SQL
+    def self.all
+      MiniActiveRecord::Model.execute("SELECT * FROM #{self}s").map do |row|
+        self.new(row)
+      end
+    end
+
+    def self.find(pk)
+      self.where('id = ?', pk).first
+    end
+
+    def self.where(query, *args)
+      MiniActiveRecord::Model.execute("SELECT * FROM #{self}s WHERE #{query}", *args).map do |row|
+        self.new(row)
+      end
+    end
+
+    # Data
+    def self.create(attributes)
+      record = self.new(attributes)
+      record.save
+
+      record
+    end
+
+    def save
+      if new_record?
+        results = insert!
+      else
+        results = update!
+      end
+
+      # When we save, remove changes between new and old attributes
+      @old_attributes = @attributes.dup
+
+      results
+    end
+
+    def new_record?
+      # We say a record is "new" if it doesn't have a defined primary key in its
+      self[:id].nil?
+    end
+
+    # Metodos Generales
+    attr_reader :attributes, :old_attributes
+    def initialize(attributes = {})
+      # e.g., Meal.new(id: 1, name: 'Chicken', created_at: '2012-12-01 05:54:30')
+      attributes.symbolize_keys!
+      raise_error_if_invalid_attribute!(attributes.keys)
+
+      @attributes = {}
+      # self.class se usa para acceder a las variables de la instancia
+      # self == #<Chef:0x007fe70a9a75d8 @attributes={}> | self.class == "Chef"
+      self.class.attribute_names.each do |name|
+        @attributes[name] = attributes[name]
+      end
+
+      @old_attributes = @attributes.dup
+    end
+
+    # e.g., chef[:first_name] #=> 'Steve'
+    def [](attribute)
+      raise_error_if_invalid_attribute!(attribute)
+
+      @attributes[attribute]
+    end
+
+    # e.g., chef[:first_name] = 'Steve'
+    def []=(attribute, value)
+      raise_error_if_invalid_attribute!(attribute)
+
+      @attributes[attribute] = value
+    end
+
+    # Model codigo base
     def self.inherited(klass)
     end
 
@@ -75,6 +151,38 @@ module MiniActiveRecord
 
     private
 
+    def insert!
+      self[:created_at] = DateTime.now
+      self[:updated_at] = DateTime.now
+
+      fields = self.attributes.keys
+      values = self.attributes.values
+      marks  = Array.new(fields.length) { '?' }.join(',')
+
+      # self.class == string Chef (Nombre de la clase)| self == instancia del objeto Chef -> #<Chef id: nil, first_name: Cris ...
+      insert_sql = "INSERT INTO #{self.class}s (#{fields.join(',')}) VALUES (#{marks})"
+
+      results = MiniActiveRecord::Model.execute(insert_sql, *values)
+
+      # This fetches the new primary key and updates this instance
+      self[:id] = MiniActiveRecord::Model.last_insert_row_id
+      results
+    end
+
+    def update!
+      self[:updated_at] = DateTime.now
+
+      fields = self.attributes.keys
+      values = self.attributes.values
+
+      update_clause = fields.map { |field| "#{field} = ?" }.join(',')
+      # self.class == string Chef (Nombre de la clase)| self == instancia del objeto Chef -> #<Chef id: nil, first_name: Cris ...
+      update_sql = "UPDATE #{self.class}s SET #{update_clause} WHERE id = ?"
+
+      # We have to use the (potentially) old ID attribute in case the user has re-set it.
+      MiniActiveRecord::Model.execute(update_sql, *values, self.old_attributes[:id])
+    end
+
     def self.prepare_value(value)
       case value
       when Time, DateTime, Date
@@ -84,6 +192,6 @@ module MiniActiveRecord
       end
     end
 
-  end
+  end # class
 
-end
+end # module

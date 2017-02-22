@@ -26,13 +26,13 @@ class Chef
       <<-SQL
         CREATE TABLE chefs (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          first_name VARCHAR(64) NOT NULL,
-          last_name VARCHAR(64) NOT NULL,
-          birthday DATE NOT NULL,
-          email VARCHAR(64) NOT NULL,
-          phone VARCHAR(64) NOT NULL,
-          created_at DATETIME NOT NULL,
-          updated_at DATETIME NOT NULL
+          first_name VARCHAR(64) ,
+          last_name VARCHAR(64) ,
+          birthday DATE ,
+          email VARCHAR(64) ,
+          phone VARCHAR(64) ,
+          created_at DATETIME ,
+          updated_at DATETIME
         );
       SQL
     )
@@ -90,3 +90,90 @@ INSERT INTO chefs (field1, field2, ...) VALUES(value1, value2, ...)	chef = Chef.
 DELETE FROM chefs WHERE id = 40	???
 NOTA: Fíjate en la segunda forma de pasar parámetros a la claúsula WHERE. El ? se llama placeholder y sirve para evitar ataques de SQL injection. Busca más información sobre SQL injection.
 =end
+require "sqlite3"
+
+class Chef
+  attr_accessor :first_name, :last_name, :birthday, :email, :phone
+
+  def initialize(first_name="NULL", last_name="NULL", birthday="NULL", email="NULL", phone="NULL")
+    set_instance_vars(first_name, last_name, birthday, email, phone)
+  end
+  def set_instance_vars(first_name="NULL", last_name="NULL", birthday="NULL", email="NULL", phone="NULL")
+    @first_name = first_name
+    @last_name = last_name
+    @birthday = birthday
+    @email = email
+    @phone = phone
+  end
+
+  def self.create_table
+    Chef.db.execute(
+      <<-SQL
+        CREATE TABLE chefs (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          first_name VARCHAR(64) ,
+          last_name VARCHAR(64) ,
+          birthday DATE ,
+          email VARCHAR(64) ,
+          phone VARCHAR(64) ,
+          created_at DATETIME ,
+          updated_at DATETIME
+        );
+      SQL
+    )
+  end
+
+  def self.all
+    Chef.db.execute(
+      <<-SQL
+      SELECT * FROM chefs
+      SQL
+      )
+  end
+
+  def self.where(var, val)
+    Chef.db.execute(
+      "SELECT * FROM chefs WHERE #{var} = ?", val
+      )
+  end
+
+  def self.delete(var, val)
+    Chef.db.execute(
+    "DELETE FROM chefs WHERE #{var} = ?", val
+    )
+  end
+
+  def self.insertfrom_class(first_name: "NULL", last_name: "NULL", birthday: "NULL", email: "NULL", phone: "NULL")
+
+    Chef.db.execute(
+      <<-SQL
+        INSERT INTO chefs
+          (first_name, last_name, birthday, email, phone, created_at, updated_at)
+        VALUES
+          ('#{first_name}', '#{last_name}', '#{birthday}', '#{email}', '#{phone}', DATETIME('now'), DATETIME('now'));
+      SQL
+    )
+  end
+
+  def save
+    Chef.db.execute(
+       <<-SQL
+      INSERT INTO chefs
+        (first_name, last_name, birthday, email, phone, created_at, updated_at)
+      VALUES
+        ('#{@first_name}', '#{@last_name}', '#{@birthday}', '#{@email}', '#{@phone}', DATETIME('now'), DATETIME('now'))
+      SQL
+      )
+  end
+
+  def insertfrom_instance(first_name="NULL", last_name="NULL", birthday="NULL", email="NULL", phone="NULL")
+      set_instance_vars(first_name, last_name, birthday, email, phone)
+  end
+
+  private
+
+  def self.db
+    @@db ||= SQLite3::Database.new("./chefs.db")
+  end
+
+end

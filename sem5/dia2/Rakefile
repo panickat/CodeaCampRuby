@@ -1,0 +1,36 @@
+
+task :console do
+  exec "irb -r ./1_JuntandoFuerzasRubyYSql.rb"
+end
+
+namespace :db do
+  require './1_JuntandoFuerzasRubyYSql.rb'
+  ruby "1_JuntandoFuerzasRubyYSql.rb"
+
+  task :seed do
+    require 'faker'
+    chef_ids = (1..5).map do
+      Chef.insertfrom_class(first_name:  Faker::Name.first_name,
+                  last_name:   Faker::Name.last_name,
+                  birthday:    Date.today - rand(1..50)*365,
+                  email:       Faker::Internet.email,
+                  phone:       Faker::PhoneNumber.phone_number)
+    end
+    puts 'db seed ... done'
+  end
+
+  task :setup do
+    puts "Creating database at #{Chef.db.filename}..."
+    Chef.create_table
+    puts 'Db Create done ...'
+  end
+
+  task :drop do
+
+
+    puts "Init.. drop "
+    File.delete(Chef.db.filename) if File.exist?(Chef.db.filename)
+    puts "drop #{Chef.db.filename}"
+    puts "done .."
+  end
+end
