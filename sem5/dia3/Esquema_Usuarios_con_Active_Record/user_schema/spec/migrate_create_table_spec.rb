@@ -7,7 +7,8 @@ describe "create table with correct schema" do
   end
 
   it "should have a Users table" do
-    expect(ActiveRecord::Base.connection.table_exists?(:users)).to eq(true)
+    #table_exists? DEPRECATION WARNING: #table_exists? currently checks both tables and views. This behavior is deprecated and will be changed with Rails 5.1 to only check tables. Use #data_source_exists? instead.
+    expect(ActiveRecord::Base.connection.data_source_exists?(:users)).to eq(true)
   end
 
   it "should have the right columns and types" do
