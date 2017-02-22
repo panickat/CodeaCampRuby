@@ -6,7 +6,7 @@ require_relative '../config/application'
 describe User, "#name and #age" do
 
   before(:all) do
-    raise RuntimeError, "be sure to run 'rake db:migrate' before running these specs" unless expect(ActiveRecord::Base.connection.table_exists?(:users)).to eq(true)
+    raise RuntimeError, "be sure to run 'rake db:migrate' before running these specs" unless expect(ActiveRecord::Base.connection.data_source_exists?(:users)).to eq(true)
     User.delete_all
 
     @user = User.new
@@ -38,7 +38,7 @@ end
 describe User, "validations" do
 
   before(:all) do
-    raise RuntimeError, "be sure to run 'rake db:migrate' before running these specs" unless expect(ActiveRecord::Base.connection.table_exists?(:users)).to eq(true)
+    raise RuntimeError, "be sure to run 'rake db:migrate' before running these specs" unless expect(ActiveRecord::Base.connection.data_source_exists?(:users)).to eq(true)
     User.delete_all
   end
 
@@ -91,7 +91,7 @@ end
 describe User, "advanced validations" do
 
   before(:all) do
-    raise RuntimeError, "be sure to run 'rake db:migrate' before running these specs" unless expect(ActiveRecord::Base.connection.table_exists?(:users)).to eq(true)
+    raise RuntimeError, "be sure to run 'rake db:migrate' before running these specs" unless expect(ActiveRecord::Base.connection.data_source_exists?(:users)).to eq(true)
     User.delete_all
   end
 
