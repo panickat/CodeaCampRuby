@@ -3,7 +3,7 @@ task :console do
 end
 
 task :purge do
-  #Rake::Task["db:drop"].invoke  # SQLite3::IOException: disk I/O error # Revisar error por Delayed
+  #°°Rake::Task["db:drop"].invoke  # SQLite3::IOException: disk I/O error # Revisar error por Delayed
   Rake::Task["db:setup"].invoke
   Rake::Task["db:seed"].invoke
 end
