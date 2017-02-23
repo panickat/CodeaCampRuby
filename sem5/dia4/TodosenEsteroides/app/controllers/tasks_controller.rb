@@ -42,15 +42,20 @@ class TasksController
     @view.show
   end
   def done(cmd)
+    cmd = match_index(cmd)
     t = Task.find(cmd)
     t.pending = false
     t.save
     @view.show
   end
   def delete(cmd)
+    cmd = match_index(cmd)
     puts "task #{cmd} was deleted =O"
     Task.delete(cmd)
     @view.show
+  end
+  def match_index(i)
+    @view.list_index.select {|row| row[:index].to_i == i.to_i}.first[:id]
   end
 
 end

@@ -2,6 +2,7 @@ class TasksView
 	# Recuerda que la única responsabilidad de la vista es desplegar data al usuario
   require 'colorize'
 
+
   def show
       list = Task.all
       if list.empty?
@@ -22,8 +23,19 @@ class TasksView
   end
 
   def print_todo(list)
-    list.each {|row| puts pending_color?(row.pending, "#{row.id}).-") + " #{row.name} #{pending_color?(row.pending)}" }
+    i = 0
+    list_index = []
+    list.each do |row|
+      i += 1
+      list_index << {index: i, name: row[:name], pending: row[:pending], id: row[:id]}
+    end
+
+    list_index.each {|row| puts pending_color?(row[:pending], "#{row[:index]}).-") + " #{row[:name]} #{pending_color?(row[:pending])}" }
     puts "#############     ################     #####\n\r".black
+    @list_index = list_index
+  end
+  def list_index
+    @list_index
   end
   def pending_color?(pending, str="")
     case str
