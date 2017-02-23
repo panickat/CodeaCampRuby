@@ -29,3 +29,7 @@ end
      Time.now.year - self.birthday.year - ((Time.now.month > self.birthday.month || (Time.now.month == self.birthday.month && Time.now.day >= self.birthday.day)) ? 0 : 1)
    end
 end
+
+class Uerr < ActiveRecord::Base
+
+end

@@ -22,6 +22,13 @@ task "db:migrate" do
 	ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
 end
 
+desc "tira, crea y migra"
+task "purge" do
+  Rake::Task["db:drop"].invoke
+  Rake::Task["db:create"].invoke
+  Rake::Task["db:migrate"].invoke
+end
+
 desc "seed the test database with sample data"
 task "db:seed" do
   UserSeeds.import
