@@ -16,7 +16,7 @@ class View
   end
   def end_program
     puts "bon boallage!".bold
-    puts ":D".bold  
+    puts ":D".bold
     puts "/" + "█".black + "\\"
     puts "." + "Π".black + "."
   end
@@ -45,7 +45,7 @@ class View
       print " > "
       if item.first == :pwd
         require 'io/console'
-        data[item.first] = STDIN.noecho(&:gets)
+        data[item.first] = STDIN.noecho(&:gets).strip!
       else
         data[item.first] = gets.chomp
       end

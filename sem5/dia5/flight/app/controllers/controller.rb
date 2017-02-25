@@ -41,8 +41,10 @@ class Controller
       #encuentra tu vuelo
     when 3
       if admin_exists?(@view.print_fields(@nav.admin_login))
+        p "if si"
         @view.print_options(@nav.admin_options)
       else
+        p "else"
          @nav.move = false
          @nav.current = :home
          @view.admin_error_login
@@ -68,11 +70,13 @@ class Controller
   end
 
   def admin_exists?(login)
-    pwd = nil
     u = User.where("email = ?", login[:email])
     pwd = Admin.where(userid: u.first.id, pwd: login[:pwd]).exists? unless u.first.nil?
-
-    pwd.nil? ? false : true
+    if pwd.nil? || pwd == false
+      false
+    else
+      true
+    end
   end
 
 end
