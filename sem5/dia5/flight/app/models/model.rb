@@ -1,15 +1,18 @@
 class Flight < ActiveRecord::Base
- 
+
 end
 
-# class User 
-# end
+class User < ActiveRecord::Base
+end
 
-# class Booking
-# end
+class Booking < ActiveRecord::Base
+end
 
-# class UserBooking
-# end
+class Admin < ActiveRecord::Base
+end
 
-# class UserFlight
-# end
+class UserBooking < ActiveRecord::Base
+end
+
+class UserFlight < ActiveRecord::Base
+end

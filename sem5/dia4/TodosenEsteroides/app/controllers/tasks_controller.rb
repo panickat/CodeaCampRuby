@@ -6,13 +6,12 @@ class TasksController
   end
 
   def cmds_loop
-    prompt = "cmds to use: show task|done, task, done, delete, exit > "
     cmd = ""
     until cmd == "exit"
-      print prompt
+      @view.prompt
       cmd = case_cmds(STDIN.gets.chomp)
     end
-    puts "bye! ;)"
+    @view.bye
   end
   def case_cmds(cmd)
     if cmd == "show"

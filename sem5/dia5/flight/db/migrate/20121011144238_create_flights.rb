@@ -9,8 +9,6 @@ class CreateFlights < ActiveRecord::Migration
       t.time :duration
       t.integer :cost
       t.integer :passengers
-
-      t.timestamps
     end
 
     create_table :users do |t|
@@ -19,10 +17,16 @@ class CreateFlights < ActiveRecord::Migration
       t.boolean :admin
     end
 
-    create_table :bookings do |t|
+    create_table :admins do |t|
+      t.integer :userid
+      t.string :pwd
+    end
+
+    create_table :userBookings do |t|
       t.integer :flight_id
       t.integer :num_booking
       t.integer :total
     end
+
   end
 end

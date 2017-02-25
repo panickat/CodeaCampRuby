@@ -1,6 +1,7 @@
 require 'active_record'
 require 'sqlite3'
 require 'yaml'
+require 'command_line_reporter'
 require_relative '../app/models/model'
 require_relative '../app/controllers/controller'
 require_relative '../app/views/view'

@@ -12,7 +12,12 @@ class TasksView
         print_todo(list)
       end
   end
-
+  def prompt
+    print "cmds to use: show task|done, task, done, delete, exit " + "> ".bold
+  end
+  def bye
+    puts "bye! ヽ(´ー｀)ノ".light_green
+  end
   def show_done
     puts "Good work all this task are done .. =D".green
     print_todo(Task.where("pending = ?",false))
@@ -40,13 +45,13 @@ class TasksView
   def pending_color?(pending, str="")
     case str
     when ""
-      pending ? ":-(".colorize(:color => :light_blue, :background => :red) : ":-D".colorize(:color => :green, :background => :blue)
+      pending ? "┐(-｡ｰ;)┌".colorize(:color => :red) : "(='.'=)".colorize(:color => :light_green)
     else
       pending ? str.red : str.blue
     end
   end
 
   def error_cmd
-    puts "this is not a correct command =P".red
+    puts "this is not a correct command".bold +  " -\(°_o)/¯".red
   end
 end
