@@ -56,6 +56,7 @@ class Controller
   end
 
   def find_flight
+    puts "nota: el id del vuelo tiene que estar dentro de las reservaciones (bookings)".blue
     puts "Escrive el id de tu vuelo"
     print "> "
     id = gets.chomp.to_i

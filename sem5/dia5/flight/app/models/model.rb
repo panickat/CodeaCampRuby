@@ -2,7 +2,7 @@ class Admin < ActiveRecord::Base
 end
 class User < ActiveRecord::Base
   belongs_to :bookings
-  validates :email, presence: true, uniqueness: true, format: { with: /.+@.+[.].{2,}/, message: "correo no valido" }
+  #validates :email, presence: true, uniqueness: true, format: { with: /.+@.+[.].{2,}/, message: "correo no valido" }
 end
 class Flight < ActiveRecord::Base
   belongs_to :bookings
