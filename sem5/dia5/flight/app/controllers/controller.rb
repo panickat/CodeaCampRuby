@@ -36,9 +36,9 @@ class Controller
   def home(option)
     case option
     when 1
-      select_flight(@view.flights(select_flight: true))
+      @view.flights(select_flight: true)
     when 2
-      #encuentra tu vuelo
+      find_flight
     when 3
       if admin_exists?(@view.print_fields(@nav.admin_login))
         @view.print_options(@nav.admin_options)
@@ -55,8 +55,11 @@ class Controller
     end
   end
 
-  def select_flight(flights)
-    
+  def find_flight
+    puts "Escrive el id de tu vuelo"
+    print "> "
+    id = gets.chomp.to_i
+    @view.bookings(id)
   end
 
   def admin(option)

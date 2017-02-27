@@ -121,8 +121,16 @@ class View
       end
     end
   end
-  def bookings
-    bookings = Booking.select("name, seatings, num_flight, cost, seatings * cost as total").joins("Inner join users on users.id = bookings.user_id inner join flights on bookings.flight_id = flights.id")
+  def bookings(booking_id = 0)
+    if booking_id > 0
+       bookings = Booking.select("name, seatings, num_flight, cost, seatings * cost as total").joins("Inner join users on users.id = bookings.user_id inner join flights on bookings.flight_id = flights.id").where("num_flight = ? ", booking_id)
+      if bookings.empty?
+      puts "Ese id no existe".red
+      return
+      end
+    else
+      bookings = Booking.select("name, seatings, num_flight, cost, seatings * cost as total").joins("Inner join users on users.id = bookings.user_id inner join flights on bookings.flight_id = flights.id")
+    end
 
     header(title: "✈ ◣_ #{bookings.length} Reservaciones _◢ ✈".green, align: "center", width: 100, bold:true)
 
