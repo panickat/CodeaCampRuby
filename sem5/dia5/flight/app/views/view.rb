@@ -6,6 +6,9 @@ class View
     @prompt = "Selecciona una opciòn : "
   end
 
+  def save_ok
+    puts "Registrto guardado".green
+  end
   def err_cmd
     puts "Opciòn incorrecta".red
     puts "-\(°_o)/¯".red
@@ -25,7 +28,7 @@ class View
   end
 
   def print_options(labels)
-    header(title: labels[:title] + " ヽ(´ー｀)ノ".green , align: 'center', width: 100, bold: true)
+    header(title: " ◣_ #{labels[:title]}  _◢".green + " ヽ(´ー｀)ノ".yellow , align: 'center', width: 100, bold: true)
 
     table do
       labels[:options].each do |item|
@@ -37,7 +40,7 @@ class View
     puts ""
   end
   def print_fields(labels)
-    header(title: labels[:title] + " (='.'=)".green , align: 'center', width: 50, bold: true)
+    header(title: " ◣_ #{labels[:title]} _◢" + " (='.'=)".yellow , align: 'center', width: 50, bold: true)
 
     data ={}
     labels[:fields].each do |item|
@@ -53,4 +56,90 @@ class View
     data
   end
 
+  #Admin opotions
+  def flights(select_flight: false)
+    flights = Flight.all
+    header(title: "✈ ◣_ #{flights.length} Vuelos disponibles _◢ ✈".green, align: "center", width: 100, bold:true)
+
+    selected_flight = []
+    index_flight = 0
+    flights.each do |flight|
+
+      index_flight += 1
+      selected_flight << { flight: flight, index_flight: index_flight}
+
+      header(title: "✈ ◣_ vuelo No. #{index_flight} _◢ ✈".green)
+      table border: true do
+        row do
+          column "vuelo: #{flight.num_flight}", width: 40
+          column "", width: 40
+          column "", width: 18
+        end
+        row do
+          column "Desde: #{flight.from}"
+          column "A: #{flight.to}"
+          column "Duracion: #{flight.duration.strftime("%T")}"
+        end
+        row do
+          column "Sale el: #{flight.date.strftime("%Y-%m-%d")}"
+          column "A las: #{flight.date.strftime("%T")}"
+          column ""
+        end
+        row do
+          column "Precio: #{cost(flight.cost)}"
+          column "Lugares: #{flight.passengers}"
+          column ""
+        end
+
+      end
+    end
+    if select_flight
+      print "Selecciona el indice de un vuelo > "
+      selected_index = gets.chomp.to_i
+      selected_flight = selected_flight.select {|f| f[:index_flight] == selected_index }
+
+      if selected_flight.empty?
+        puts "ese vuelo no existe".red
+      else
+        puts "✈ ◣_ Seleccionaste el vuelo No. #{selected_index} a: #{selected_flight.first[:flight][:to]} _◢ ✈".green
+        User.all.each {|u| puts "#{u.id} #{u.name}" }
+        puts "Escribe tu numero de usuario:"
+        print "> "
+        user = gets.chomp.to_i
+
+        puts "Cuantos voletos deseas comprar?"
+        print "> "
+        tickets = gets.chomp.to_i
+
+        booking = Booking.new(flight_id: selected_flight.first[:flight][:id], user_id: user, seatings: tickets)
+        if booking.save
+          puts "Compra realizada".green
+        else
+          puts "Datos incorrectos, no se guardo la compra".red
+        end
+
+      end
+    end
+  end
+  def bookings
+    bookings = Booking.select("name, seatings, num_flight, cost, seatings * cost as total").joins("Inner join users on users.id = bookings.user_id inner join flights on bookings.flight_id = flights.id")
+
+    header(title: "✈ ◣_ #{bookings.length} Reservaciones _◢ ✈".green, align: "center", width: 100, bold:true)
+
+    bookings.each do |ticket|
+      table border: true do
+        row do
+          column "Nombre: #{ticket.name}", width: 25
+          column "Vuelo: #{ticket.num_flight}", width: 12
+          column "Lugares: #{ticket.seatings}", width: 11
+          column "Costo: #{cost(ticket.cost)}", width: 20
+          column "Total: #{cost(ticket.total)}", width: 20
+        end
+      end
+    end
+
+  end
+  def cost(str)
+    "$ #{ str.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse} mxn"
+  end
 end

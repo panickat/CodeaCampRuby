@@ -3,7 +3,6 @@ class CreateFlights < ActiveRecord::Migration
     create_table :flights do |t|
       t.integer :num_flight
       t.date :date
-      t.time :depart
       t.string :from
       t.string :to
       t.time :duration
@@ -18,14 +17,14 @@ class CreateFlights < ActiveRecord::Migration
     end
 
     create_table :admins do |t|
-      t.integer :userid
+      t.integer :user_id
       t.string :pwd
     end
 
-    create_table :userBookings do |t|
+    create_table :bookings do |t|
       t.integer :flight_id
-      t.integer :num_booking
-      t.integer :total
+      t.integer :user_id
+      t.integer :seatings
     end
 
   end
