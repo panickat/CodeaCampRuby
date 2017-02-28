@@ -50,15 +50,33 @@ class View
         require 'io/console'
         data[item.first] = STDIN.noecho(&:gets).strip!
       else
-        data[item.first] = gets.chomp
+        val = gets.chomp
+        val = Integer(val) rescue val
+        data[item.first] = val
       end
     end
     data
   end
 
   #Admin opotions
-  def flights(select_flight: false)
-    flights = Flight.all
+  def flights(select_flight = nil)
+
+    if select_flight.nil?
+      flights = Flight.select("flights.*, (passengers - seatings) as free").joins("left join bookings on flights.id = bookings.flight_id")
+    else
+      where =[]
+      select_flight.select! {|k,v| v != ""}
+      select_flight.each do |k,v|
+        k == :seatings ? where << "#{k} >= :#{k}" : where << "#{k} = :#{k}"
+
+      end
+      where = "(#{where.join(" and ")}) or seatings is null"
+
+      flights = Flight.select("flights.*, (passengers - seatings) as free").joins("left join bookings on flights.id = bookings.flight_id").where(where, select_flight)
+      gets.chomp
+    end
+
+
     header(title: "✈ ◣_ #{flights.length} Vuelos disponibles _◢ ✈".green, align: "center", width: 100, bold:true)
 
     selected_flight = []
@@ -88,12 +106,12 @@ class View
         row do
           column "Precio: #{cost(flight.cost)}"
           column "Lugares: #{flight.passengers}"
-          column ""
+          column "disponibles: #{flight.free.nil? ? flight.passengers : flight.free}"
         end
 
       end
     end
-    if select_flight
+    unless select_flight.nil?
       print "Selecciona el indice de un vuelo > "
       selected_index = gets.chomp.to_i
       selected_flight = selected_flight.select {|f| f[:index_flight] == selected_index }
@@ -123,10 +141,10 @@ class View
   end
   def bookings(booking_id = 0)
     if booking_id > 0
-       bookings = Booking.select("name, seatings, num_flight, cost, seatings * cost as total").joins("Inner join users on users.id = bookings.user_id inner join flights on bookings.flight_id = flights.id").where("num_flight = ? ", booking_id)
+      bookings = Booking.select("name, seatings, num_flight, cost, seatings * cost as total").joins("Inner join users on users.id = bookings.user_id inner join flights on bookings.flight_id = flights.id").where("num_flight = ? ", booking_id)
       if bookings.empty?
-      puts "Ese id no existe".red
-      return
+        puts "Ese id no existe".red
+        return
       end
     else
       bookings = Booking.select("name, seatings, num_flight, cost, seatings * cost as total").joins("Inner join users on users.id = bookings.user_id inner join flights on bookings.flight_id = flights.id")

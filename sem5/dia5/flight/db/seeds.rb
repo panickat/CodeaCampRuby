@@ -1,5 +1,5 @@
 require 'faker'
-u = User.create(name: :root, email: "", admin: true)
+u = User.create(name: "admin", email: "", admin: true)
 Admin.create(user_id: u.id, pwd: "")
 
 from, to  = [],[]

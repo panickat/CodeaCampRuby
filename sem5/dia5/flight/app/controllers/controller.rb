@@ -30,16 +30,30 @@ class Controller
       home(option)
     when :admin_options
       admin(option)
+    when :reservaciones
+      reservaciones(option)
+    end
+  end
+
+  def reservaciones(option)
+    case option
+    when 1
+      @view.flights(@view.print_fields(@nav.encuentra_tu_vuelo))
+    when 2
+      @nav.move = false
+      @nav.current = :home
+    when 3
+      "Salir"
+    else
+      @view.err_cmd
     end
   end
 
   def home(option)
     case option
     when 1
-      @view.flights(select_flight: true)
+      @view.print_options(@nav.reservaciones)
     when 2
-      find_flight
-    when 3
       if admin_exists?(@view.print_fields(@nav.admin_login))
         @view.print_options(@nav.admin_options)
       else
@@ -123,7 +137,15 @@ class Nav
 
   def home
     @current = :home
-    {screen: :home, title: "Inicio | Bienvenido a Vuelos Codea", options: [[1, "Reservaciones"],[2, "Encuentra tu vuelo"], [3, "Administrador"], [4, "Salir"]]}
+    {screen: :home, title: "Inicio | Bienvenido a Vuelos Codea", options: [[1, "Reservaciones"], [2, "Administrador"], [3, "Salir"]]}
+  end
+  def reservaciones
+    @current = :reservaciones
+    {screen: :home, title: "Reservaciones | Aqui podras reservar tu vuelo", options: [[1, "Encuentra tu vuelo"], [2, "Atras"], [3, "Salir"]]}
+  end
+  def encuentra_tu_vuelo
+    @current = :encuentra_tu_vuelo
+    {screen: :encuentra_tu_vuelo, title: "Busqueda de vuelos ", fields: {from: "Desde ", to: "A ", date: "Fecha ", seatings: "No. de acientos que desea comprar"}}
   end
   def admin_login
     @current = :admin_login
