@@ -2,8 +2,8 @@
 class View
   include CommandLineReporter
 
-  def initialize
-    @prompt = "Selecciona una opciòn : "
+  def initialize(prompt=false)
+    @prompt = "Selecciona una opciòn : " if prompt
   end
 
   def save_ok
@@ -61,7 +61,6 @@ class View
 
   #Admin opotions
   def flights(select_flight = nil)
-
     if select_flight.nil?
       flights = Flight_view.all
     else
@@ -136,6 +135,7 @@ class View
 
       end
     end
+
   end
   def bookings(booking_id = 0)
     if booking_id > 0
