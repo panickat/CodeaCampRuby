@@ -66,18 +66,18 @@ Passengers (1, 2, 3, 4...):
 3
 El usuario podrá seleccionar un vuelo disponible:
 
-Vuelos disponibles From: Western Sahara To: Saudi Arabia
+Vuelos disponibles_from:Western Sahara_to:Saudi Arabia
 ---------------------------------------------------------------------
 1) No Vuelo: 96384
-Date: 2015-06-15 , Depart: 11:17:16 UTC From: Western Sahara,
+Date: 2015-06-15 , Depart: 11:17:16 UTC_from:Western Sahara,
 To: Saudi Arabia, Duration: 7:00:00, Precio: 829.50, Lugares: 8
 ---------------------------------------------------------------------
 2) No Vuelo :35472
-Date: 2015-06-15 , Depart: 13:36:40 UTC From: Western Sahara,
+Date: 2015-06-15 , Depart: 13:36:40 UTC_from:Western Sahara,
 To: Saudi Arabia, Duration: 7:00:00, Precio: 748.45, Lugares: 10
 ---------------------------------------------------------------------
 3) No Vuelo :63669
-Date: 2015-06-15 , Depart: 14:47:27 UTC From: Western Sahara,
+Date: 2015-06-15 , Depart: 14:47:27 UTC_from:Western Sahara,
 To: Saudi Arabia, Duration: 7:00:00, Precio: 4434.0, Lugares: 23
 ...
 
@@ -93,7 +93,7 @@ Reservación de vuelo:
 Número de Vuelo Seleccionado: 47615
 -------------------------------------------------------------------------
 Date: 2015-06-15, Depart: 14:47:27
-From: Western Sahara, To: Saudi Arabia, Duration: 7:00:00, Precio: 4434.0
+From: Western Sahara,_to:Saudi Arabia, Duration: 7:00:00, Precio: 4434.0
 -------------------------------------------------------------------------
 
 Datos de Persona 1:

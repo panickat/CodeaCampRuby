@@ -8,8 +8,8 @@ class Flight < ActiveRecord::Base
   belongs_to :bookings
   validates :num_flight, presence: true
   validates :date, presence: true
-  validates :from, presence: true
-  validates :to, presence: true
+  validates :_from, presence: true
+  validates :_to, presence: true
   validates :duration, presence: true
   validates :cost, presence: true
   validates :passengers, presence: true
@@ -21,4 +21,7 @@ class Booking < ActiveRecord::Base
   #has_one :bookings
   has_many :flights
   has_many :users
+end
+
+class Flight_view < ActiveRecord::Base
 end
