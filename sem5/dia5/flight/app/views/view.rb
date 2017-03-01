@@ -38,6 +38,7 @@ class View
       end
     end
     puts ""
+
   end
   def print_fields(labels)
     header(title: " ◣_ #{labels[:title]} _◢" + " (='.'=)".yellow , align: 'center', width: 50, bold: true)

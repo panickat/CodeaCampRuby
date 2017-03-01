@@ -14,24 +14,18 @@ class Controller
   end
 
   def case_cmds
-    unless @nav.move?
-      case @nav.current
-      when :home
-        @view.print_options(@nav.home)
-      end
-      @nav.move = true
-    end
-
     @view.prompt
     option = STDIN.gets.chomp.to_i
 
-    case @nav.current
+    case Nav.current
     when :home
       home(option)
     when :admin_options
       admin(option)
     when :reservaciones
       reservaciones(option)
+    else
+      @view.err_cmd
     end
   end
 
@@ -40,7 +34,6 @@ class Controller
     when 1
       @view.flights(@view.print_fields(@nav.encuentra_tu_vuelo))
     when 2
-      @nav.move = false
       @nav.current = :home
     when 3
       "Salir"
@@ -57,7 +50,6 @@ class Controller
       if admin_exists?(@view.print_fields(@nav.admin_login))
         @view.print_options(@nav.admin_options)
       else
-         @nav.move = false
          @nav.current = :home
          @view.admin_error_login
       end
@@ -65,7 +57,6 @@ class Controller
       "Salir"
     else
       @view.err_cmd
-      @nav.move = true
     end
   end
 
@@ -85,8 +76,7 @@ class Controller
     when 3
       new_flight(@view.print_fields(@nav.new_flight))
     when 4
-      @nav.move = false
-      @nav.current = :home
+      Nav.current = :home
     else
       @view.err_cmd
     end
@@ -126,40 +116,43 @@ end
 
 class Nav
   attr_accessor :current, :previous, :next, :move
-  @@current = :home
+  @@current
+
+  def initialize
+    View.new.print_options(home)
+    @@current = :home
+  end
+
   def self.current
     @@current
   end
-  def initialize
-    @move = false
-  end
-  def move?
-    @move
+  def self.current=(var)
+    @@current = var
   end
 
   def home
-    @current = :home
+    @@current = :home
     {screen: :home, title: "Inicio | Bienvenido a Vuelos Codea", options: [[1, "Reservaciones"], [2, "Administrador"], [3, "Salir"]]}
   end
   def reservaciones
-    @current = :reservaciones
+    @@current = :reservaciones
     {screen: :home, title: "Reservaciones | Aqui podras reservar tu vuelo", options: [[1, "Encuentra tu vuelo"], [2, "Atras"], [3, "Salir"]]}
   end
   def encuentra_tu_vuelo
-    @current = :encuentra_tu_vuelo
+    @@current = :encuentra_tu_vuelo
     {screen: :encuentra_tu_vuelo, title: "Busqueda de vuelos ", fields: {from: "Desde ",_to:"A ", date: "Fecha ", free: "No. de acientos que desea comprar"}}
   end
   def admin_login
-    @current = :admin_login
+    @@current = :admin_login
     {screen: :admin_login, title: "Logeo | Administrador", fields: {email: "Ingrese email", pwd: "Ingrese contraseña"}}
   end
   def admin_options
-    @current = :admin_options
+    @@current = :admin_options
     @move = true
     {screen: :admin_options, title: "Opciones de Administrador | Bienvenido Administrador", options: [[1, "Muestra todos los vuelos"],[2, "Muestra todas las Reservaciones"], [3, "Crea un nuevo vuelo", "Salir"], [4, "ir al menu inicio"]]}
   end
   def new_flight
-    @current = :admin_options
+    @@current = :admin_options
     {screen: :admin_options, title: "Admin | Crear nuevo vuelo", fields: {num_flight: "Numero de vuelo ", date: "fecha ",_from:"Desde ",_to:"Para ", duration: "Duracion ", cost: "Costo ", passengers: "Pasageros "}}
   end
 
