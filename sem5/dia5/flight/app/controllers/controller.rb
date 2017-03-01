@@ -28,10 +28,6 @@ class Controller
       @view.flights(Nav.print_fields)
     when 2
       Nav.current = :home
-    when 3
-      "Salir"
-    else
-      @view.err_cmd
     end
   end
 
@@ -49,16 +45,7 @@ class Controller
       end
     when 3
       "Salir"
-    else
-      @view.err_cmd
     end
-  end
-
-  def find_flight
-    puts "Escrive el id de tu vuelo"
-    print "> "
-    id = gets.chomp.to_i
-    @view.bookings(id)
   end
 
   def admin_options(option)
@@ -72,8 +59,6 @@ class Controller
       new_flight
     when 4
       Nav.current = :home
-    else
-      @view.err_cmd
     end
   end
 
@@ -135,7 +120,7 @@ class Nav
     {title: "Inicio | Bienvenido a Vuelos Codea", options: [[1, "Reservaciones"], [2, "Administrador"], [3, "Salir"]]}
   end
   def self.reservaciones
-    {title: "Reservaciones | Aqui podras reservar tu vuelo", options: [[1, "Encuentra tu vuelo"], [2, "Atras"]]}
+    {title: "Reservaciones | Dejar en blancon los campos que no nesecites y usar destinos incompletos", options: [[1, "Encuentra tu vuelo"], [2, "Atras"]]}
   end
   def self.admin_login
     {title: "Logeo | Administrador", fields: {email: "Ingrese email", pwd: "Ingrese contraseña"}}
@@ -157,9 +142,6 @@ class Nav
   end
   # Reservaciones
   def self.encuentra_tu_vuelo
-    {screen: :reservaciones, title: "Busqueda de vuelos ", fields: {from: "Desde ",_to:"A ", date: "Fecha ", free: "No. de acientos que desea comprar"}}
+    {screen: :reservaciones, title: "Busqueda de vuelos ", fields: {_from: "Desde ",_to:"A ", date: "Fecha ", free: "No. de acientos que desea comprar"}}
   end
 end
-# {title: "¡¡Bienvenido!!", options: ["Encuentra tu boleto de aviòn", "Salir"]}
-# {title: "!!Encuentra tu vuelo¡¡", fields: [:From, :To, :Date, :Passengers]}# Buscar flights
-# {title: "Datos Personales", fields: [:Nombre, :Email]}

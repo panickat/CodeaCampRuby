@@ -24,5 +24,4 @@ class Booking < ActiveRecord::Base
 end
 
 class Flight_view < ActiveRecord::Base
-
 end
