@@ -48,19 +48,7 @@ class Controller
     end
   end
 
-<<<<<<< HEAD
-  def find_flight
-    puts "nota: el id del vuelo tiene que estar dentro de las reservaciones (bookings)".blue
-    puts "Escrive el id de tu vuelo"
-    print "> "
-    id = gets.chomp.to_i
-    @view.bookings(id)
-  end
-
-  def admin(option)
-=======
   def admin_options(option)
->>>>>>> examen
     case option
     when 1
       Nav.current = :view_flights
