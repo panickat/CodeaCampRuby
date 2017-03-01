@@ -62,17 +62,14 @@ class View
   def flights(select_flight = nil)
 
     if select_flight.nil?
-      flights = Flight.select("flights.*, (passengers - seatings) as free").joins("left join bookings on flights.id = bookings.flight_id")
+      flights = Flight_view.all
     else
       where =[]
       select_flight.select! {|k,v| v != ""}
-      select_flight.each do |k,v|
-        k == :seatings ? where << "#{k} >= :#{k}" : where << "#{k} = :#{k}"
+      select_flight.each {|k,v| k == :free ? where << "#{k} >= :#{k}" : where << "#{k} = :#{k}" }
+      where = "(#{where.join(" and ")}) or free is null"
 
-      end
-      where = "(#{where.join(" and ")}) or seatings is null"
-
-      flights = Flight.select("flights.*, (passengers - seatings) as free").joins("left join bookings on flights.id = bookings.flight_id").where(where, select_flight)
+      flights = Flight.select("flights.*, (passengers - seatings) as free").joins("left join bookings on flights.id = flight_id").where(where, select_flight)
       gets.chomp
     end
 
@@ -94,8 +91,8 @@ class View
           column "", width: 18
         end
         row do
-          column "Desde: #{flight.from}"
-          column "A: #{flight.to}"
+          column "Desde: #{flight._from}"
+          column "A: #{flight._to}"
           column "Duracion: #{flight.duration.strftime("%T")}"
         end
         row do
@@ -105,8 +102,8 @@ class View
         end
         row do
           column "Precio: #{cost(flight.cost)}"
-          column "Lugares: #{flight.passengers}"
-          column "disponibles: #{flight.free.nil? ? flight.passengers : flight.free}"
+          column "Lugares: #{flight.passengers}  -  Occupados: #{flight.occupied}"
+          column "Libres: #{flight.free}"
         end
 
       end

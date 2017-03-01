@@ -22,3 +22,7 @@ class Booking < ActiveRecord::Base
   has_many :flights
   has_many :users
 end
+
+class Flight_view < ActiveRecord::Base
+
+end

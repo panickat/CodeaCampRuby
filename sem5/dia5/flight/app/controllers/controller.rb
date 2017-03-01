@@ -126,9 +126,11 @@ end
 
 class Nav
   attr_accessor :current, :previous, :next, :move
-
+  @@current = :home
+  def self.current
+    @@current
+  end
   def initialize
-    @current = :home
     @move = false
   end
   def move?
@@ -145,7 +147,7 @@ class Nav
   end
   def encuentra_tu_vuelo
     @current = :encuentra_tu_vuelo
-    {screen: :encuentra_tu_vuelo, title: "Busqueda de vuelos ", fields: {from: "Desde ", to: "A ", date: "Fecha ", seatings: "No. de acientos que desea comprar"}}
+    {screen: :encuentra_tu_vuelo, title: "Busqueda de vuelos ", fields: {from: "Desde ",_to:"A ", date: "Fecha ", free: "No. de acientos que desea comprar"}}
   end
   def admin_login
     @current = :admin_login
@@ -158,7 +160,7 @@ class Nav
   end
   def new_flight
     @current = :admin_options
-    {screen: :admin_options, title: "Admin | Crear nuevo vuelo", fields: {num_flight: "Numero de vuelo ", date: "fecha ", from: "Desde ", to: "Para ", duration: "Duracion ", cost: "Costo ", passengers: "Pasageros "}}
+    {screen: :admin_options, title: "Admin | Crear nuevo vuelo", fields: {num_flight: "Numero de vuelo ", date: "fecha ",_from:"Desde ",_to:"Para ", duration: "Duracion ", cost: "Costo ", passengers: "Pasageros "}}
   end
 
 end
