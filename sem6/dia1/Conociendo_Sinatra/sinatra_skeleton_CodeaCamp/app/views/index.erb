@@ -1,0 +1,75 @@
+<h1>Bienvenido a Sinatra!</h1>
+<p>Este es un esqueleto de sinatra que armamos para ti</p>
+
+<h3>Metodo Get</h3>
+<form action="/cool_url" method="get">
+
+  User name <input type="text" name="user" placeholder="type your name">
+
+  <textarea cols="40" rows="5" name="text_area">
+    Now we are inside the area - which is nice.
+  </textarea>
+
+  <div align="center"><br>
+    <input type="radio" name="group1" value="Milk"> Milk<br>
+    <input type="radio" name="group1" value="Butter" checked> Butter<br>
+    <input type="radio" name="group1" value="Cheese"> Cheese
+    <hr>
+    <input type="radio" name="group2" value="Water"> Water<br>
+    <input type="radio" name="group2" value="Beer"> Beer<br>
+    <input type="radio" name="group2" value="Wine" checked> Wine<br>
+  </div>
+
+  <div align="center"><br>
+    <input type="checkbox" name="option1" value="Milk"> Milk<br>
+    <input type="checkbox" name="option2" value="Butter" checked> Butter<br>
+    <input type="checkbox" name="option3" value="Cheese"> Cheese<br>
+    <br>
+  </div>
+
+  <div align="center">
+    <select name="drop_down">
+      <option value="Milk">Fresh Milk</option>
+      <option value="Cheese">Old Cheese</option>
+      <option value="Bread">Hot Bread</option>
+    </select>
+  </div>
+  <input type="submit" value="Enviar">
+</form>
+
+<h3>Metodo Post</h3>
+<form action="/cool_url" method="post">
+
+  title <input type="text" name="post[title]" placeholder="type your mail">
+  price <input type="text" name="post[price]" placeholder="type your mail">
+
+  <textarea cols="40" rows="5" name="post[description]">
+    Now we are inside the area - which is nice.
+  </textarea>
+
+  <div align="center"><br>
+    <input type="radio" name="group1" value="Milk"> Milk<br>
+    <input type="radio" name="group1" value="Butter" checked> Butter<br>
+    <input type="radio" name="group1" value="Cheese"> Cheese
+    <hr>
+    <input type="radio" name="group2" value="Water"> Water<br>
+    <input type="radio" name="group2" value="Beer"> Beer<br>
+    <input type="radio" name="group2" value="Wine" checked> Wine<br>
+  </div>
+
+  <div align="center"><br>
+    <input type="checkbox" name="option1" value="Milk"> Milk<br>
+    <input type="checkbox" name="option2" value="Butter" checked> Butter<br>
+    <input type="checkbox" name="option3" value="Cheese"> Cheese<br>
+    <br>
+  </div>
+
+  <div align="center">
+    <select name="drop_down">
+      <option value="Milk">Fresh Milk</option>
+      <option value="Cheese">Old Cheese</option>
+      <option value="Bread">Hot Bread</option>
+    </select>
+  </div>
+  <input type="submit" value="Enviar">
+</form>
