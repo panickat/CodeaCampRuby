@@ -1,0 +1,33 @@
+.container {
+  margin: 0 auto;
+  width: 768px;
+}
+header {
+  background-color: black;
+}
+
+#logo {
+  display: block;
+  margin: 0 auto;
+}
+
+#navlist {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#navlist li {
+  display: inline;
+}
+#navlist li a {
+  float: left;
+  width: 25%;
+  background-color: grey;
+  text-align: center;
+  padding: 7px 0px 7px 0px;
+  color: white;
+}
+
+.footer {
+  padding-top: 20px;
+}
