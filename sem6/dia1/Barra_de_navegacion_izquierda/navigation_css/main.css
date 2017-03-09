@@ -1,0 +1,49 @@
+.container {
+  margin: 0 auto;
+  width: 768px;
+}
+
+header {
+  background-color: black;
+}
+
+#logo {
+  display: block;
+  margin: 0 auto;
+}
+
+.content {
+background-color: white;
+border-bottom:1px solid black;
+}
+
+nav {
+  float: left;
+  width: 100px;
+  height: 503px;
+  background-color: grey;
+  text-align: center;
+  border-bottom:1px solid black;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+}
+
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+nav ul > li {
+  padding-top: 10px;
+}
+.content, .footer {
+  margin-left: 100px;
+  padding-left: 10px;
+}
+.footer {
+  clear: both;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
