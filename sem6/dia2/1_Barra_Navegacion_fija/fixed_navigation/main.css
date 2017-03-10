@@ -1,0 +1,36 @@
+.container {
+  margin: 0 auto;
+  width: 768px;
+}
+
+.top-nav {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  background-color: black;
+}
+
+nav > ul {
+  list-style: none;
+  float: left;
+  width: 597px;
+  margin:0;
+  padding: 0;
+  margin-top: 15px;
+}
+nav img {
+  float: left;
+}
+nav ul > li {
+  float: left;
+  width: 25%;
+  text-align: right;
+}
+nav a {
+  color: white;
+}
+
+#content {
+  margin-top: 66px;
+}
