@@ -1,8 +1,20 @@
 <h1>Find Anagrams!</h1>
 
-<% if @new_word %>
-  <p>Estos son anagramas para '<%= @new_word %>':</p>
-  <p># Aqui deberás enlistar todos los anagramas</p>
-<% end %>
+<% if @items.key?(:anagrams) %>
+  <p>Estos son los <%= @items[:anagrams].count %>  anagramas para '<strong><%= @items[:word] %></strong>':</p>
 
+  <ul>
+    <% @items[:anagrams].each do |item| %>
+    <li>
+      <%= item %>
+    </li>
+    <% end %>
+  <ul>
 
+<%
+else
+  %> <strong><p><%= @items[:word] %></strong>: no esta en la base de datos</p> <%
+end
+%>
+<br/>
+<%= erb :_word_form %>
