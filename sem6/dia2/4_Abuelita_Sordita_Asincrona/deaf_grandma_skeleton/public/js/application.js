@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   });
 
-jQuery('#frm > input').on('input', function() {
+  jQuery('#frm > input').on('input', function() {
     $("#answer_line").fadeTo( "slow", 0 );
   });
 

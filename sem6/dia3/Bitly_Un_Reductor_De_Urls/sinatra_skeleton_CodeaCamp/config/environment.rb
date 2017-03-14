@@ -29,5 +29,5 @@ Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'uploaders', '*.rb')].each { |file| require file }
 
-# Configura la base de datos y modelos 
+# Configura la base de datos y modelos
 require APP_ROOT.join('config', 'database')

@@ -7,3 +7,19 @@
 th {
   text-align: left;
 }
+
+#status {
+  opacity: 0;
+}
+
+#list_urls span {
+  display:inline-block;
+}
+
+.li1ro {
+  width: 40%;
+}
+
+.li2do {
+  color: green;
+}

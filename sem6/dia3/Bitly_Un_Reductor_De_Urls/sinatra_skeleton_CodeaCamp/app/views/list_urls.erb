@@ -1,0 +1,14 @@
+  <%= erb :add_url %>
+<h1>Ultimos shortens agregados</h1>
+<br>
+<ol id="list_urls">
+    <%
+    Url.all.reverse_order.each do |url|
+      %><%=
+      "<li><span class='li1ro'><label>#{url.long_url}</label> <a href= 'http://localhost:9393/#{url.short_url}' >#{url.short_url}</a></span><span class='li2do'> con #{url.hits} visita#{plural(url.hits)}</span></li>"
+      %><%
+    end
+    %>
+
+
+</ol>
