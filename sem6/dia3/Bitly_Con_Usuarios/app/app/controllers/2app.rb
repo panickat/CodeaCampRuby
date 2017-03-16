@@ -5,7 +5,10 @@ get '/' do
 end
 
 get "/#{app_name}" do
-  p "enetro a get app_name* =O"
-  authenticate
+  @user_id = authenticate
   erb :container
+end
+
+post "/close_session" do
+  env["rack.session"][:authenticate] = nil
 end

@@ -1,11 +1,13 @@
 <%= erb :add_url %>
-<label><h1>Ultimos shortens agregados</h1></label>
-<br>
+<label id="close_session" class="not_show"><button>cerrar sesiòn</button></label>
+<label><h1>Ultimos 5 shortens agregados</h1></label>
 <ol id="list_urls">
   <%
-  Url.limit(5).reverse_order.each do |url|
+  urls =  @user_id.nil? ? urls = Urlview.limit(5) : Urlview.where("user_id = ?", @user_id)
+
+  urls.reverse_order.each do |url|
     %><%=
-    "<label><li><span class='li1ro'> #{url.long_url} <a href= 'http://localhost:9393/#{url.short_url}'  target='_blank'>#{url.short_url}</a></span><span class='li2do'> con <var>#{url.hits}</var> visita#{plural(url.hits)}</span></li></label>"
+    "<label><li><span class='li1ro'> Usuario: #{url.name} #{url.long_url} <a href= 'http://localhost:9393/#{url.short_url}'  target='_blank'>#{url.short_url}</a></span><span class='li2do'> con <var>#{url.hits}</var> visita#{plural(url.hits)}</span></li></label>"
     %><%
   end
   %>

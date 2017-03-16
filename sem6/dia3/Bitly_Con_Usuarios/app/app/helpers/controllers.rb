@@ -1,7 +1,11 @@
 helpers do
 
   def authenticate
-    redirect to "/404" if env["rack.session"][:authenticate].nil?
+    if env["rack.session"][:authenticate].nil?
+      redirect to "/404"
+    else
+       env["rack.session"][:authenticate]
+     end
   end
 
   def plural(number)

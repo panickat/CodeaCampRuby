@@ -127,21 +127,27 @@ a:active {
   right: 0;
 }
 
-/* line 120, ../../app/views/sass/sass.scss */
+/* line 119, ../../app/views/sass/sass.scss */
+.not_show {
+  display: none;
+}
+
+/* line 124, ../../app/views/sass/sass.scss */
 #list_urls span {
   display: inline-block;
 }
 
-/* line 124, ../../app/views/sass/sass.scss */
+/* line 128, ../../app/views/sass/sass.scss */
 .li1ro {
-  width: 40%;
+  width: 60%;
 }
 
-/* line 128, ../../app/views/sass/sass.scss */
+/* line 132, ../../app/views/sass/sass.scss */
 .li2do {
+  width: 40%;
   color: green;
 }
-/* line 130, ../../app/views/sass/sass.scss */
+/* line 135, ../../app/views/sass/sass.scss */
 .li2do var {
   color: #F0F0F0;
 }

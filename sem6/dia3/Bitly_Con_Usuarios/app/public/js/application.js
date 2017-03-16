@@ -1,11 +1,18 @@
 $(document).ready(function() {
 
   //General
+  if (location.pathname == "/codea") $("#close_session").removeClass("not_show");
+
   $( "form input" ).focus(function() {
     $( "label:nth-last-child(1)").fadeTo( "slow", 0 );
   });
 
   //// login & signin
+  $( "#close_session" ).click(function() { console.log();
+    $.post( location.origin + "/close_session");
+    window.location.href = location.origin;
+  });
+
   $( "#login" ).click(function() {
     window.location.href = location.origin + "/login";
   });
@@ -27,14 +34,13 @@ $(document).ready(function() {
       if (data.success) {
         window.location.href = location.origin + "/" + data.redirect_to;
       }else{
-        $("label:nth-last-child(1)").text("Intenta de nuevo");
 
         var err_list = "";
         data.errs.forEach( function(err) {
           err_list += "<li>"+ err +"</li>";
         });
 
-        $("label:nth-last-child(1)").append("<ol>"+ err_list +"</ol>");
+        $("label:nth-last-child(1)").html("<p>intenta de nuevo</p><ol>"+ err_list +"</ol>");
       }
       $("label:nth-last-child(1)").fadeTo( "slow", 1 );
     });
@@ -51,20 +57,17 @@ $(document).ready(function() {
 
 
       if (data.success) {
-        $("label:nth-last-child(1)").text(
-          "Se guardo la url: " + data.url.long_url + " con el shorten: "
-        );
+
         var url = location.origin + "/" + data.url.short_url;
-        $("label:nth-last-child(1)").append("<a href='" + url + "' target='_blank'>" + url + "</a>");
+        $("label:nth-last-child(1)").html("Se guardo la url: " + data.url.long_url + " con el shorten: <a href='" + url + "' target='_blank'>" + url + "</a>");
       }else{
-        $("label:nth-last-child(1)").text("Lo sentimos mucho, no se guardo tu url por estas razones");
 
         var err_list = "";
         data.errs.forEach( function(err) {
           err_list += "<li>"+ err +"</li>";
         });
 
-        $("label:nth-last-child(1)").append("<ol>"+ err_list +"</ol>");
+        $("label:nth-last-child(1)").html("<p>Lo sentimos mucho, no se guardo tu url por estas razones</p><ol>"+ err_list +"</ol>");
       }
       $("label:nth-last-child(1)").fadeTo( "slow", 1 );
     });

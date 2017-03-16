@@ -116,16 +116,21 @@ a {
    @include stretch;
 }
 
+.not_show {
+  display: none;
+}
+
 //urls app
 #list_urls span {
   display:inline-block;
 }
 
 .li1ro {
-  width: 40%;
+  width: 60%;
 }
 
 .li2do {
+  width: 40%;
   color: green;
   var {
     color: $blanquito;

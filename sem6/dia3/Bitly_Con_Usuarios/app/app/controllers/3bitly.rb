@@ -1,11 +1,8 @@
 get "/urls" do
-  puts "/urls"
   erb :list_urls
 end
 
 get "/:short_url" do
-  puts "/:short_url  = #{params[:short_url]}"
-
   url = Url.where("short_url = '#{params[:short_url]}'").first
 
   if url.nil?
@@ -21,11 +18,12 @@ get "/:short_url" do
 end
 
 post "/add_url" do
-  p "post /add_url"
   content_type :json
   response = {}
 
-  url = Url.create(long_url: params[:long_url])
+  params[:user_id] = env["rack.session"][:authenticate] unless env["rack.session"][:authenticate].nil?
+  
+  url = Url.create(params)
   response[:url] = url
 
   if url.valid?

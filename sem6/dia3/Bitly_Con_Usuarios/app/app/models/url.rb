@@ -46,3 +46,6 @@ class Url < ActiveRecord::Base
     url
   end
 end
+
+class Urlview < ActiveRecord::Base
+end
