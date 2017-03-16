@@ -1,0 +1,47 @@
+.container {
+  margin: 0 auto;
+  width: 768px;
+}
+
+header {
+  background-color: black;
+}
+
+#logo {
+  display: block;
+  margin: 0 auto;
+}
+
+small.page_no {
+  float: right;
+  color: #ddd;
+}
+
+.pagination ul {
+  padding-left: 0px;
+  list-style: none;
+
+}
+
+.pagination ul li {
+  border: 1px;
+  border-color: gray;
+  border-style: solid;
+  float: left;
+  padding: 10px 15px 10px 15px;
+}
+
+.pagination ul li:first-child{
+  border-radius: 10px 0px 0px 10px;
+}
+.pagination ul li:last-child{
+  border-radius: 0px 10px 10px 0px;
+}
+
+.pagination ul li a {
+    text-decoration: none;
+}
+
+.footer {
+  margin-top: 20px
+}
