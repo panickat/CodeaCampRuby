@@ -1,0 +1,133 @@
+@import "compass/layout/stretching";
+@import "compass/utilities";
+@import "compass/css3";
+
+$gris_fondo: #333333; // gris fondo
+$gris_opaco: #4A4A4A; // gris opaco
+$gris_brillante: #9B9B9B; // gris brillante
+$blanquito: #F0F0F0; // blanquitow
+
+%stretched {
+  border: 3px solid $gris_fondo;
+  @include border-radius(8px);
+  display: block;
+  background-color: darken($gris_fondo, 30%);
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5em;
+}
+
+body {
+  background-color: $gris_fondo;
+  font-family: 'Open Sans', Helvetica;
+}
+
+form {
+  text-align: center;
+}
+
+
+label {
+  display: block;
+  letter-spacing: 4px;
+  padding-top: 30px;
+  text-align: center;
+
+  .label-text {
+    color: $gris_brillante;
+    cursor: text;
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    @include transform(translateY(-34px));
+    transition: all 0.3s;
+  }
+
+  input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid $gris_opaco;
+    color: white;
+    font-size: 36px;
+    letter-spacing: -1px;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    width: 200px;
+    transition: all 0.3s;
+
+    &:focus {
+      width: 400px;
+
+      & + .label-text {
+        color: $blanquito;
+        font-size: 13px;
+        @include transform(translateY(-74px));
+      }
+    }
+
+    &:valid + .label-text {
+      font-size: 13px;
+      @include transform(translateY(-74px));
+    }
+  }
+}
+
+button {
+  background-color: $gris_fondo;
+  border: 2px solid white;
+  border-radius: 27px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  transition: all 200ms;
+
+  &:hover, &:focus {
+    background-color: white;
+    color: $gris_fondo;
+    outline: 0;
+  }
+}
+
+form label:nth-last-child(1) {
+  opacity: 0;
+}
+
+a {
+  &:link {
+    color: $gris_brillante;
+  }
+  &:visited {
+    color: $gris_opaco;
+  }
+  &:active {
+    color: green;
+  }
+}
+
+// user app
+.img404 {
+  background-image: url("../images/404.jpg") ;
+  @extend %stretched;
+   @include stretch;
+}
+
+//urls app
+#list_urls span {
+  display:inline-block;
+}
+
+.li1ro {
+  width: 40%;
+}
+
+.li2do {
+  color: green;
+  var {
+    color: $blanquito;
+  }
+}
