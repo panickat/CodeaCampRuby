@@ -9,6 +9,7 @@ get "/#{app_name}" do
   erb :container
 end
 
-post "/close_session" do
+get "/close_session" do
   env["rack.session"][:authenticate] = nil
+  redirect to "/"
 end

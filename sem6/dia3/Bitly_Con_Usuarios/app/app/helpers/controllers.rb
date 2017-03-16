@@ -1,3 +1,4 @@
+
 helpers do
 
   def authenticate

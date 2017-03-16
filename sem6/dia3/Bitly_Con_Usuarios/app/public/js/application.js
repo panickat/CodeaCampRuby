@@ -8,9 +8,8 @@ $(document).ready(function() {
   });
 
   //// login & signin
-  $( "#close_session" ).click(function() { console.log();
-    $.post( location.origin + "/close_session");
-    window.location.href = location.origin;
+  $( "#close_session" ).click(function() {
+    window.location.href = location.origin + "/close_session";
   });
 
   $( "#login" ).click(function() {

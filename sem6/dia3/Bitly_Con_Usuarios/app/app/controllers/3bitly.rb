@@ -1,3 +1,4 @@
+                       
 get "/urls" do
   erb :list_urls
 end
@@ -22,7 +23,7 @@ post "/add_url" do
   response = {}
 
   params[:user_id] = env["rack.session"][:authenticate] unless env["rack.session"][:authenticate].nil?
-  
+
   url = Url.create(params)
   response[:url] = url
 
