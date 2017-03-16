@@ -51,11 +51,15 @@ div#slot-machine {
   margin: 0 auto;
 }
 
-#win {
-  position: relative;
-  top: 245px;
-  /*left: 170px;*/
-  color: #00e800;
+#msg {
+  clear: both;
+  margin-top: 50px;
+}
+.win {
+  color: green;
+}
+.lose{
+  color:red;
 }
 
 form {
