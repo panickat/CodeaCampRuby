@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 
-    normalize.css remueve las diferenecia que hay entre browsers segun los defaults de css predeterminados que utilizan. 
+  <!--
+    normalize.css remueve las diferenecia que hay entre browsers segun los defaults de css predeterminados que utilizan.
     Revisa: http://necolas.github.com/normalize.css/
   -->
-  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--
     application.css este es el archivo donde van tus estilos, tu css
   -->
@@ -17,8 +18,7 @@
   <title></title>
 </head>
 <body>
-  <div class="container">
     <%= yield %>
-  </div>
+  <script src="/css/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>
