@@ -23,12 +23,12 @@ $(document).ready(function() {
   // animations
   function hide_or_show(action){
     if (action == "show") {
-      $(".sidenav").animate({height:'587px'});
+      $(".sidenav").animate({height:'673px'});
       $("#save_post_alert").removeClass("hide");
       $("#save_post_alert").addClass("show");
       $("#save_post_alert").fadeTo("slow", 1);
     } else {
-      $(".sidenav").animate({height:'515px'});
+      $(".sidenav").animate({height:'601px'});
       $("#save_post_alert").fadeTo("slow", 0, function(){
         $("#save_post_alert").removeClass("show");
         $("#save_post_alert").addClass("hide");
