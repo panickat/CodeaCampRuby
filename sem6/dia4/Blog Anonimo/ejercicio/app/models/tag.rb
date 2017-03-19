@@ -4,7 +4,6 @@ class Tag < ActiveRecord::Base
 
   has_many :pts # posts_tags
   has_many :posts, :through => :pts
-  @@max_rank = 0
 
   def hit
     self.hits += 1
@@ -14,7 +13,8 @@ class Tag < ActiveRecord::Base
   def rank
     stars_range =[]
     stars = 0
-    (1..4).each {|star| stars_range << (get_max_rank * star) / 5}
+    max = Tag.maximum(:hits)
+    (1..4).each {|star| stars_range << (max * star) / 5}
 
     if self.hits >= stars_range[3]
       stars = 5
@@ -28,9 +28,6 @@ class Tag < ActiveRecord::Base
       stars = 1
     end
     stars
-  end
-  def get_max_rank
-    @@max_rank.nil? ? @@max_rank = Tag.maximum(:hits) : @@max_rank
   end
 
   after_validation :busy_tag?
