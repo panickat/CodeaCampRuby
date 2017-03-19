@@ -10,6 +10,26 @@ class Tag < ActiveRecord::Base
     self.save
   end
 
+  def rank
+    max = Tag.maximum(:hits)
+    stars_range =[]
+    stars = 0
+    (1..4).each {|star| stars_range << (max * star) / 5}
+
+    if self.hits >= stars_range[3]
+      stars = 5
+    elsif self.hits >= stars_range[2]
+      stars = 4
+    elsif self.hits >= stars_range[1]
+      stars = 3
+    elsif self.hits >= stars_range[0]
+      stars = 2
+    elsif self.hits < stars_range[0]
+      stars = 1
+    end
+    stars
+  end
+
   after_validation :busy_tag?
 
   def busy_tag?
