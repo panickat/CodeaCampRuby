@@ -48,5 +48,4 @@ class Tag < ActiveRecord::Base
   def upgrade_existing?
     @tag_to_hit.nil? ? false : @tag_to_hit.hit
   end
-
 end

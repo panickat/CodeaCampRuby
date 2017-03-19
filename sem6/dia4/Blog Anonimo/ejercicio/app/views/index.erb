@@ -16,8 +16,8 @@
 
       <ul class="nav nav-pills nav-stacked" id="last_tags">
         <% # Pendiente: hacer benchmark entre Maxhit.all y Tag.maximun(:hits) #class="active"
-
-          Tag.order(id: :desc).limit(5).each do |tag|
+          top5tags = Tag.order(id: :desc).limit(5)
+          top5tags.each do |tag|
             stars = '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>' * tag.rank
             %><%=
             "<li><a href='#{tag.tag}'>#{tag.tag} #{stars}</a></li>"
@@ -35,16 +35,14 @@
         <button type="submit" class="btn btn-success">mandar</button>
       </form>
       <br>
-
       <div class="alert alert-success hide" role="alert" id ="save_post_alert">...</div>
-
     </div>
 
     <div class="col-sm-9">
       <h4><small>RECENT POSTS</small></h4>
       <hr>
       <h2 id="title">I Love Food</h2>
-      <h5 id="date_posted"><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
+      <h5 id="date_posted"><span class="glyphicon glyphicon-time"></span> Comentado en:<%=  top5tags.first.tag %></h5>
       <h5 id="post_tags">
         <span class="label label-danger">Food</span>
         <span class="label label-primary">Ipsum</span>
@@ -52,7 +50,6 @@
       <br>
       <p id="post">Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </p>
-      <hr> <!-- thematic break -->
 
     </div>
   </div>

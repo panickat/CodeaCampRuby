@@ -2,6 +2,7 @@ post "/add_post" do
   content_type :json
   response = {} # al omitir: error Rack::Lint::LintError: header key must be a string, was Symbol
   tags = params[:title].scan(/#\w+/) + params[:body].scan(/#\w+/)
+  tags.uniq!
 
   tags_record =[]
   tags.each do |tag_to_add|
@@ -17,6 +18,7 @@ post "/add_post" do
   post_to_add = Post.new(params)
 
   if post_to_add.save
+    Pt.add_post(post_to_add.id, tags_record)
     response[:success] = true
   else
     response[:success] = false
