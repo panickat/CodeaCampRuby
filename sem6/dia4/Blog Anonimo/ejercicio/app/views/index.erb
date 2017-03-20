@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav">
-      <h1>Blog anonimo</h1>
-      <h4>Ultimos 5 #hashtags</h4>
+      <h1>Blog anònimo</h1>
+      <h4>Ultimos #hashtags</h4>
 
       <div class="input-group">
         <input type="text" class="form-control" placeholder="#Buscar ..">
@@ -14,9 +14,9 @@
         </span>
       </div>
 
-      <ul class="nav nav-pills nav-stacked" id="last_tags">
+      <ul class="nav nav-pills nav-stacked">
         <% # Pendiente: hacer benchmark entre Maxhit.all y Tag.maximun(:hits) #class="active"
-          last5tag_ids = Pt.order(post_id: :desc).limit(5).collect {|pt| pt.tag_id } # last 5 tagas used
+          last5tag_ids = Pt.last(5).collect {|pt| pt.tag_id } # last 5 tagas used
 
           last5tags = Tag.where(id: last5tag_ids)
 
@@ -41,7 +41,7 @@
       <div class="alert alert-success hide" role="alert" id ="save_post_alert">...</div>
     </div>
 
-    <div class="col-sm-9">
+    <div class="col-sm-9" id="posts_container">
       <%
         post_ids = Pt.where(tag_id: last5tag_ids).pluck(:post_id).uniq
         posts = Post.where(id: post_ids).order(id: :desc).limit(10)
@@ -49,9 +49,9 @@
       %>
       <h4><small>RECENT POSTS</small></h4>
       <hr>
-      <h4 id='title'><%= post.title %></h4>
-      <h5 id="date_posted"><span class="glyphicon glyphicon-time"></span> Comentado en: <%=  post.created_at.strftime("%Y %m %d") %> </h5>
-      <h5 id="post_tags">
+      <h4><%= post.title %></h4>
+      <h5><span class="glyphicon glyphicon-time"></span> Comentado en: <%=  post.created_at.strftime("%Y %m %d") %> </h5>
+      <h5>
         <%
         post.pts.each do |pt|
           %><%= " <span class='label label-primary'>#{Tag.find(pt.tag_id).tag}</span>" %><%
@@ -59,7 +59,7 @@
         %>
       </h5>
       <br>
-      <%= "<p id='pos'>#{post.body}</p>" %>
+      <%= "<p>#{post.body}</p>" %>
     <% end %>
     </div>
 

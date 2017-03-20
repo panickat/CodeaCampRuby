@@ -19,10 +19,26 @@ post "/add_post" do
 
   if post_to_add.save
     Pt.add_post(post_to_add.id, tags_record)
-    response[:success] = true
   else
-    response[:success] = false
     response[:errors] = post_to_add.errors.messages
+  end
+
+  response.to_json
+end
+
+post "/posts_from_tag" do
+  content_type :json
+  response = {posts: []}
+
+  tag = Tag.where("tag=?", params[:tag])
+  post_ids = tag.first.pts.collect {|pt| pt.post_id}
+
+  Post.where(id: post_ids.uniq).order(id: :desc).each do |post|
+    tag_ids = post.pts.collect {|pt| pt.tag_id}.uniq
+    tags_from_post = Tag.where(id: tag_ids).collect {|tag| tag.tag}
+
+    post_with_tags = {post: post, tags: tags_from_post}
+    response[:posts] << post_with_tags
   end
 
   response.to_json
