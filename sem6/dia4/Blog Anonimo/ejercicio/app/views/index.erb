@@ -2,7 +2,6 @@
   <div class="row content">
     <div class="col-sm-3 sidenav">
       <h1>Blog anònimo</h1>
-      <h4>Ultimos #hashtags</h4>
 
       <div class="input-group">
         <input type="text" class="form-control" placeholder="#Buscar ..">
@@ -14,20 +13,40 @@
         </span>
       </div>
 
-      <ul class="nav nav-pills nav-stacked">
-        <% # Pendiente: hacer benchmark entre Maxhit.all y Tag.maximun(:hits) #class="active"
-          last5tag_ids = Pt.last(5).collect {|pt| pt.tag_id } # last 5 tagas used
+      <div class="row">
+        <div class="col-xs-6">
+          <h5>Ultimos #hashtags</h5>
+          <ul class="nav nav-pills nav-stacked">
+            <% # Pendiente: hacer benchmark entre Maxhit.all y Tag.maximun(:hits) #class="active"
+            last5tag_ids = Pt.last(5).collect {|pt| pt.tag_id }.uniq # last 5 tagas used
 
-          last5tags = Tag.where(id: last5tag_ids)
+            last5tags = Tag.where(id: last5tag_ids)
 
-          last5tags.reverse.each do |tag|
-            stars = '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>' * tag.rank
-            %><%=
-            "<li><a href='#{tag.tag}'>#{tag.tag} #{stars}</a></li>"
-            %><%
-          end
-        %>
-      </ul>
+            last5tags.reverse.each do |tag|
+              stars = '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>' * tag.rank
+              %><%=
+              "<li><a href='#{tag.tag}'>#{tag.tag} <span class='badge'>#{tag.hits}</span> #{stars}</a></li>"
+              %><%
+            end
+            %>
+          </ul>
+
+        </div>
+        <div class="col-xs-6">
+          <h5>Trending topic</h5>
+          <ul class="nav nav-pills nav-stacked">
+            <%
+            Tag.order(hits: :desc).limit(5).each do |tag|
+              stars = '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>' * tag.rank
+              %><%=
+              "<li><a href='#{tag.tag}'>#{tag.tag} <span class='badge'>#{tag.hits}</span> #{stars}</a></li>"
+              %><%
+            end
+            %>
+          </ul>
+
+        </div>
+      </div>
 
       <h4>Dejanos un post:</h4>
       <form role="form">
@@ -43,30 +62,31 @@
 
     <div class="col-sm-9" id="posts_container">
       <%
-        post_ids = Pt.where(tag_id: last5tag_ids).pluck(:post_id).uniq
-        posts = Post.where(id: post_ids).order(id: :desc).limit(10)
-        posts.each do |post|
-      %>
-      <h4><small>RECENT POSTS</small></h4>
-      <hr>
-      <h4><%= post.title %></h4>
-      <h5><span class="glyphicon glyphicon-time"></span> Comentado en: <%=  post.created_at.strftime("%Y %m %d") %> </h5>
-      <h5>
-        <%
-        post.pts.each do |pt|
-          %><%= " <span class='label label-primary'>#{Tag.find(pt.tag_id).tag}</span>" %><%
-        end
+      post_ids = Pt.where(tag_id: last5tag_ids).pluck(:post_id).uniq
+      posts = Post.where(id: post_ids).order(id: :desc).limit(10)
+      posts.each do |post|
         %>
-      </h5>
-      <br>
-      <%= "<p>#{post.body}</p>" %>
-    <% end %>
+        <h4><small>RECENT POSTS</small></h4>
+        <hr>
+        <h4><%= post.title %></h4>
+        <h5><span class="glyphicon glyphicon-time"></span> Comentado en: <%=  post.created_at.strftime("%Y %m %d") %> </h5>
+        <h5>
+          <%
+          post.pts.each do |pt|
+            tag = Tag.find(pt.tag_id).tag
+            %><%= " <a class='label label-primary' href='#{tag}'>#{tag}</a>" %><%
+          end
+          %>
+        </h5>
+        <br>
+        <%= "<p>#{post.body}</p>" %>
+        <% end %>
+      </div>
+
+
     </div>
-
-
   </div>
-</div>
 
-<footer class="container-fluid">
-  <p>happy post</p>
-</footer>
+  <footer class="container-fluid">
+    <p>happy post</p>
+  </footer>

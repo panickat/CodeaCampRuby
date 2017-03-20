@@ -1,10 +1,25 @@
 $(document).ready(function() {
 
-  //Click last hashtags
-  $(".sidenav ul li").click(function(){
+  // hashtag from nav
+  $(".sidenav ul li").click(function(event){
+
+    event.preventDefault();
     click_list_active(".sidenav ul li",this);
 
     var posting = $.post("/posts_from_tag", "tag=" + $(this).find("a").attr("href"));
+
+    posting.done(function(data) {
+      $("#posts_container").html(construct_pots_from_tag(data.posts));
+    });
+
+  });
+  // hashtag from body
+  $("#posts_container").on("click", "a", function(event){ console.log("from body");
+
+    event.preventDefault();
+    click_list_active(".sidenav ul li","");
+
+    var posting = $.post("/posts_from_tag", "tag=" + $(this).attr("href"));
 
     posting.done(function(data) {
       $("#posts_container").html(construct_pots_from_tag(data.posts));
@@ -59,7 +74,7 @@ $(document).ready(function() {
 
       var tags = "";
       data.tags.forEach(function(tag){
-        tags += " <span class='label label-primary'>" + tag + "</span>"
+        tags += " <a class='label label-primary' href='"+ tag +"'>" + tag + "</a>"
       });
 
       html += "<h4><small>RECENT POSTS</small></h4>" +
