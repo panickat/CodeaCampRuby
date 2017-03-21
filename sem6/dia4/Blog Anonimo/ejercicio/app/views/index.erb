@@ -4,7 +4,7 @@
       <h1>Blog anònimo</h1>
 
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="#Buscar ..">
+        <input type="text" class="form-control" placeholder="#Buscar .." id="search">
 
         <span class="input-group-btn">
           <button class="btn btn-default" type="button">
@@ -12,6 +12,8 @@
           </button>
         </span>
       </div>
+
+      <div class="list-group" id="search_list"></div>
 
       <div class="row">
         <div class="col-xs-6">
@@ -57,8 +59,8 @@
         <button type="submit" class="btn btn-success">mandar</button>
       </form>
       <br>
-      <div class="alert alert-success hide" role="alert" id ="save_post_alert">...</div>
     </div>
+    <div class="alert alert-success hide" role="alert" id ="save_post_alert">...</div>
 
     <div class="col-sm-9" id="posts_container">
       <%

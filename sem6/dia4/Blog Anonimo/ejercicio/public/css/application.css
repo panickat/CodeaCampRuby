@@ -22,3 +22,9 @@ footer {
   }
   .row.content {height: auto;}
 }
+#save_post_alert {
+  position: relative;
+}
+#search_list{
+    opacity: 0;
+}
