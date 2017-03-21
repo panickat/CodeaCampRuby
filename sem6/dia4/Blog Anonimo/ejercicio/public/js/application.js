@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  var search_term = null;
 
   //search
   $("#search").on("input",function(e){
@@ -6,7 +7,9 @@ $(document).ready(function() {
 
       //$(this).data("lastval",$(this).val());
       if ($(this).val().length >= 3){
-        var posting = $.post("/tags_like", "tag=" + $(this).val());
+
+        search_term = $(this).val();
+        var posting = $.post("/tags_like", "tag=" + search_term);
 
         posting.done(function(data) {
 
@@ -32,8 +35,8 @@ $(document).ready(function() {
   click_list_active("#search_list a",this);
   click_list_active(".sidenav ul li","");
 
-
-  var posting = $.post("/posts_from_tag", "tag=" + $(this).attr("href"));
+  search_term = $(this).attr("href");
+  var posting = $.post("/posts_from_tag", "tag=" + search_term);
 
   posting.done(function(data) {
     $("#posts_container").html(construct_pots_from_tag(data.posts));
@@ -47,7 +50,8 @@ event.preventDefault();
 click_list_active(".sidenav ul li",this);
 click_list_active("#search_list a","");
 
-var posting = $.post("/posts_from_tag", "tag=" + $(this).find("a").attr("href"));
+search_term = $(this).find("a").attr("href");
+var posting = $.post("/posts_from_tag", "tag=" + search_term);
 
 posting.done(function(data) {
   $("#posts_container").html(construct_pots_from_tag(data.posts));
@@ -61,7 +65,8 @@ $("#posts_container").on("click", "a", function(event){
   click_list_active(".sidenav ul li","");
   click_list_active("#search_list a","");
 
-  var posting = $.post("/posts_from_tag", "tag=" + $(this).attr("href"));
+  search_term = $(this).attr("href");
+  var posting = $.post("/posts_from_tag", "tag=" + search_term);
 
   posting.done(function(data) {
     $("#posts_container").html(construct_pots_from_tag(data.posts));
@@ -115,6 +120,8 @@ function display_alert(action){
 
 function construct_pots_from_tag(posts) {
   var html = ""; var tag = "";
+  search_term = search_term == null ? "Ultimos posts" : "Post para: " + search_term
+  
   posts.forEach(function(data) {
 
     var date = new Date(data.post.created_at);
@@ -125,7 +132,7 @@ function construct_pots_from_tag(posts) {
       tags += " <a class='label label-primary' href='"+ tag +"'>" + tag + "</a>"
     });
 
-    html += "<h4><small>RECENT POSTS</small></h4>" +
+    html += "<h4><small>"+ search_term +"</small></h4>" +
     "<hr>" +
     "<h4>" + data.post.title + "</h4>" +
     '<h5><span class="glyphicon glyphicon-time"></span> Comentado en: ' + date + "</h5>" +
@@ -133,7 +140,8 @@ function construct_pots_from_tag(posts) {
     tags +
     "</h5>" +
     "<br>" +
-    "<p>" + data.post.body + "</p>" ;
+    "<p>" + data.post.body + "</p>" +
+    "<hr>";
   });
   return html;
 };
