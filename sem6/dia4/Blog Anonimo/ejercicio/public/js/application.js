@@ -18,7 +18,7 @@ $(document).ready(function() {
           $("#search_list").html(out);
 
         });
-      }else{
+      }else if($(this).val().length == 0) {
         $("#search_list").fadeTo("slow", 0, function(){
           $("#search_list").html("");
         });
@@ -30,6 +30,8 @@ $(document).ready(function() {
 
   event.preventDefault();
   click_list_active("#search_list a",this);
+  click_list_active(".sidenav ul li","");
+
 
   var posting = $.post("/posts_from_tag", "tag=" + $(this).attr("href"));
 
@@ -39,10 +41,11 @@ $(document).ready(function() {
 
 });
 // hashtag from nav
-$(".sidenav ul li, #search_list a").click(function(event){ console.log("nav");
+$(".sidenav ul li").click(function(event){ console.log("nav");
 
 event.preventDefault();
 click_list_active(".sidenav ul li",this);
+click_list_active("#search_list a","");
 
 var posting = $.post("/posts_from_tag", "tag=" + $(this).find("a").attr("href"));
 
@@ -56,6 +59,7 @@ $("#posts_container").on("click", "a", function(event){
 
   event.preventDefault();
   click_list_active(".sidenav ul li","");
+  click_list_active("#search_list a","");
 
   var posting = $.post("/posts_from_tag", "tag=" + $(this).attr("href"));
 
@@ -106,8 +110,6 @@ function display_alert(action){
       $("#save_post_alert").addClass("hide");
     });
   }
-  // console.log($(".sidenav").css("height"));
-  // console.log($(".sidenav").height());
 };
 // html construct
 
