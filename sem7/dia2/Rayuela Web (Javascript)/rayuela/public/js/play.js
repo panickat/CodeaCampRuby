@@ -20,50 +20,76 @@ $(document).ready(function(){
   };
 
   function up_down(index, action){
-    if (players[index].move != null) return;
+    if (players[index].nth != null) return;
 
     switch (action) {
       case "up":
-        held_down = new Date() - players[index].press_start;
-        strength = Math.random() * 15;
+      held_down = new Date() - players[index].press_start;
+      strength = Math.random() * 15;
 
-        players[index].move = setInterval(function() {step_td(players[index].name) }, strength)
-        setTimeout(function(){ clearInterval(players[index].move) }, held_down);
-        break;
+      players[index].move = setInterval(function() { players[index].nth = step_td(players[index].name) }, strength)
+      setTimeout(function(){
+        clearInterval(players[index].move)
+        winner();
+      }, held_down);
+      break;
 
       case "down":
-         if (players[index].press_start == null) players[index].press_start = new Date();
+      if (players[index].press_start == null) players[index].press_start = new Date();
       break;
     }
   }
   function step_td(user){
     active = $("#" + user).find("td.active").removeClass("active").index() + 2;
     $("#" + user + " td:nth-child("+ active +")").addClass("active");
+    return active
   }
 
+  function winner(){
+    var goal = $("#" + players[0].name).find("td.goal").index();
+    var nearest = 0;
+    var number_players = 0;
+    var winner = null;
+    players.forEach(function(player){
 
-function players(){
-  key_range = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+      if (player.nth != null) {
+        number_players += 1;
+        if (player.nth <= goal && player.nth > nearest) nearest = player.nth
+      }
+    });
 
-  return location.search.replace("?","").split('&').map(function(p) {
-    arr = p.split('=');
-    hash = {};
-    hash.name = arr[0].replace(/[+]/g,"_");
-    hash.id = arr[1];
-    hash.press_start = null;
-    hash.key = key_range.shift();
-    hash.move = null;
+    if (number_players == players.length){
+      players.forEach(function(player){
+        if (player.nth == nearest) winner = player
+      });
+      $("#winner").text("El ganador es: " + winner.name + "!!");
+      $("#winner").fadeTo("slow", 1);
+    }
+  }
 
-    instructions(hash);
-    return hash ;
-  });
+  function players(){
+    key_range = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-  function instructions(key){
-    $("#players_keys").append(
-      "<li><figure class='brackets'><div class='name'>"+ hash.name.replace(/[_]/g," ") +"</div> juega con la letra<var>"+ hash.key +"</var><span>manten presionado para tomar impulso</span></figure></li>"
-    );
+    return location.search.replace("?","").split('&').map(function(p) {
+      arr = p.split('=');
+      hash = {};
+      hash.name = arr[0].replace(/[+]/g,"_");
+      hash.id = arr[1];
+      hash.press_start = null;
+      hash.key = key_range.shift();
+      hash.move = null;
+      hash.nth = null;
+
+      instructions(hash);
+      return hash ;
+    });
+
+    function instructions(key){
+      $("#players_keys").append(
+        "<li><figure class='brackets'><div class='name'>"+ hash.name.replace(/[_]/g," ") +"</div> juega con la letra<var>"+ hash.key +"</var><span>manten presionado para tomar impulso</span></figure></li>"
+      );
+    };
   };
-};
 
 
 });

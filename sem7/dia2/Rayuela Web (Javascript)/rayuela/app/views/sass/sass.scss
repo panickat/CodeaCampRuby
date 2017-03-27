@@ -20,6 +20,10 @@ $codea_azul: #1f8bd0;
   padding: 0.5em;
 }
 
+.sombra{
+   @include text-shadow(rgba($blanquito, .5) 1px 1px 20px, rgba($gris_brillante, 0.2) 2px 2px 2px, rgba(blue, 0.2) 3px 3px 2px);
+}
+
 body {
   background-color: $gris_fondo;
   font-family: 'Open Sans', Helvetica;
@@ -120,13 +124,21 @@ a {
 
 .hide {
   display: none;
+  opacity: 0;
 }
 //codea general
 figure {margin:0}
 ul {list-style: none}
+
 .name {
   display: inline-block;
-  &:first-letter {font-size: 120%; text-transform: capitalize; color: $blanquito}
+  @extend .sombra;
+  &:first-letter {
+    font-size: 120%;
+    text-transform: capitalize;
+    color: $blanquito;
+    letter-spacing: 2px;
+  }
 }
 
 .brackets {
@@ -144,6 +156,7 @@ ul {list-style: none}
     color: $codea_amarillo
   }
 }
+var {@extend .sombra;}
 
 
 .container {
@@ -174,6 +187,7 @@ ul {
   height: 20px;
   width: 3px;
 }
+
 .table td.player {
   max-width: 150px;
    overflow: hidden;
@@ -181,13 +195,24 @@ ul {
    white-space: nowrap;
   padding: 0px 5px 10px 5px;
   color: $blanquito;
+  @extend .sombra;
 }
 .table td:nth-child(1){
   padding-top: 10px;
 }
+
 .table td.active {
   background-color: $codea_amarillo;
+  @extend .sombra;
 }
 .table td.goal {
   background-color: $codea_azul;
+  @extend .sombra;
+}
+
+#winner{
+  text-align: center;
+  font-size: 400%;
+  color: $codea_azul;
+   @extend .sombra;
 }
