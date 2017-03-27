@@ -1,0 +1,202 @@
+/* line 10, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.img404 {
+  border: 3px solid #333333;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  display: block;
+  background-color: black;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5em;
+}
+
+/* line 21, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+body {
+  background-color: #333333;
+  font-family: 'Open Sans', Helvetica;
+}
+
+/* line 26, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+form {
+  text-align: center;
+}
+
+/* line 31, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+label {
+  display: block;
+  letter-spacing: 4px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+/* line 37, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+label .label-text {
+  color: #9B9B9B;
+  cursor: text;
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: uppercase;
+  -webkit-transform: translateY(-34px);
+  -moz-transform: translateY(-34px);
+  -ms-transform: translateY(-34px);
+  -o-transform: translateY(-34px);
+  transform: translateY(-34px);
+  transition: all 0.3s;
+}
+
+/* line 47, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+label input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #4A4A4A;
+  color: white;
+  font-size: 36px;
+  letter-spacing: -1px;
+  outline: 0;
+  padding: 5px 20px;
+  text-align: center;
+  width: 200px;
+  transition: all 0.3s;
+}
+
+/* line 60, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+label input:focus {
+  width: 400px;
+}
+
+/* line 63, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+label input:focus + .label-text {
+  color: #F0F0F0;
+  font-size: 13px;
+  -webkit-transform: translateY(-74px);
+  -moz-transform: translateY(-74px);
+  -ms-transform: translateY(-74px);
+  -o-transform: translateY(-74px);
+  transform: translateY(-74px);
+}
+
+/* line 70, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+label input:valid + .label-text {
+  font-size: 13px;
+  -webkit-transform: translateY(-74px);
+  -moz-transform: translateY(-74px);
+  -ms-transform: translateY(-74px);
+  -o-transform: translateY(-74px);
+  transform: translateY(-74px);
+}
+
+/* line 77, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+button {
+  background-color: #333333;
+  border: 2px solid white;
+  border-radius: 27px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  transition: all 200ms;
+}
+
+/* line 89, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+button:hover, button:focus {
+  background-color: white;
+  color: #333333;
+  outline: 0;
+}
+
+/* line 96, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+#status {
+  opacity: 0;
+}
+
+/* line 101, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+a:link {
+  color: #9B9B9B;
+}
+
+/* line 104, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+a:visited {
+  color: #4A4A4A;
+}
+
+/* line 107, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+a:active {
+  color: green;
+}
+
+/* line 112, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.img404 {
+  background-image: url("../img/404.jpg");
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* line 118, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.hide {
+  display: none;
+}
+
+/* line 122, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.container {
+  margin: 0 auto;
+  width: 768px;
+  padding: 0px 20px 20px 20px;
+}
+
+/* line 128, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+header {
+  background-color: #4A4A4A;
+}
+
+/* line 133, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+#logo {
+  display: block;
+  margin: 0 auto;
+}
+
+/* line 138, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+#main-title {
+  text-align: center;
+}
+
+/* line 144, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.table td {
+  background-color: white;
+  height: 20px;
+  width: 3px;
+}
+
+/* line 149, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.table td.player {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0px 5px 10px 5px;
+}
+
+/* line 156, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.table td:nth-child(1) {
+  padding-top: 10px;
+}
+
+/* line 159, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.table td.active {
+  background-color: black;
+}
+
+/* line 162, /Users/panic/CodeaCampRuby/sem7/dia2/Rayuela Web (Javascript)/rayuela/app/views/sass/sass.scss */
+.table td.goal {
+  background-color: red;
+}
+
+/*# sourceMappingURL=../../../public/css/sass.map */

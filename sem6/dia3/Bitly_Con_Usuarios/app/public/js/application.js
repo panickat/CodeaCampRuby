@@ -21,10 +21,10 @@ $(document).ready(function() {
   });
 
   $( "#frm_log" ).submit(function( event ) {
-    get_response();
+    get_response(event);
   });
 
-  function get_response() {
+  function get_response(event) {
     event.preventDefault();
     var posting = $.post( location.href, $("form").serialize() );
 

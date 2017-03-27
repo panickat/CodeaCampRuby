@@ -1,0 +1,17 @@
+<table class="table">
+  <%
+  @players.each do |player|
+    %><%=
+    "<tr id='#{player[0]}'>" +
+    "<td class='player'> #{player[0]} </td>" +
+    "<td class='active'></td>"
+    %><%
+    200.times {%><%= "<td></td>" %><%}
+    %><%= "<td class='goal'></td>" %><%
+    20.times {%><%= "<td></td>" %><%}
+    %><%= "</tr>"%><%
+  end
+  %>
+</table>
+
+<script src="/js/play.js"></script>
