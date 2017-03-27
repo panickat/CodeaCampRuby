@@ -24,6 +24,7 @@ $(document).ready(function() {
       $("#status").text("Lo sentimos el numero maximo de jugadores es de 36");
       $( "#status" ).fadeTo( "slow", 1 );
     }
+    $("#other_players label:nth-last-child(1  ) input").focus();
   });
 
   //helpers

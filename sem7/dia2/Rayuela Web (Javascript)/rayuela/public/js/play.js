@@ -25,14 +25,13 @@ $(document).ready(function(){
     switch (action) {
       case "up":
         held_down = new Date() - players[index].press_start;
-        strength = Math.random() * 15; console.log(strength);
+        strength = Math.random() * 15;
 
         players[index].move = setInterval(function() {step_td(players[index].name) }, strength)
         setTimeout(function(){ clearInterval(players[index].move) }, held_down);
         break;
 
       case "down":
-      console.log(players[index]);
          if (players[index].press_start == null) players[index].press_start = new Date();
       break;
     }
@@ -49,13 +48,21 @@ function players(){
   return location.search.replace("?","").split('&').map(function(p) {
     arr = p.split('=');
     hash = {};
-    hash.name = arr[0];
+    hash.name = arr[0].replace(/[+]/g,"_");
     hash.id = arr[1];
     hash.press_start = null;
     hash.key = key_range.shift();
     hash.move = null;
+
+    instructions(hash);
     return hash ;
   });
+
+  function instructions(key){
+    $("#players_keys").append(
+      "<li><figure class='brackets'><div class='name'>"+ hash.name.replace(/[_]/g," ") +"</div> juega con la letra<var>"+ hash.key +"</var><span>manten presionado para tomar impulso</span></figure></li>"
+    );
+  };
 };
 
 

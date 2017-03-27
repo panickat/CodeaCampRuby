@@ -2,10 +2,12 @@
 @import "compass/utilities";
 @import "compass/css3";
 
-$gris_fondo: #333333; // gris fondo
-$gris_opaco: #4A4A4A; // gris opaco
-$gris_brillante: #9B9B9B; // gris brillante
-$blanquito: #F0F0F0; // blanquitow
+$gris_fondo: #333333;
+$gris_opaco: #4A4A4A;
+$gris_brillante: #9B9B9B;
+$blanquito: #F0F0F0;
+$codea_amarillo: #fbb73b;
+$codea_azul: #1f8bd0;
 
 %stretched {
   border: 3px solid $gris_fondo;
@@ -74,6 +76,7 @@ label {
   }
 }
 
+
 button {
   background-color: $gris_fondo;
   border: 2px solid white;
@@ -118,6 +121,30 @@ a {
 .hide {
   display: none;
 }
+//codea general
+figure {margin:0}
+ul {list-style: none}
+.name {
+  display: inline-block;
+  &:first-letter {font-size: 120%; text-transform: capitalize; color: $blanquito}
+}
+
+.brackets {
+  color: $codea_azul;
+  &:before {color: $codea_amarillo; content:" { "}
+  &:after {color: $codea_amarillo; content:" } "}
+
+  span {
+      color:$blanquito;
+  };
+  var {
+    &:before {content:" "}
+    &:after {content:" "}
+    font-size: 120%;
+    color: $codea_amarillo
+  }
+}
+
 
 .container {
   margin: 0 auto;
@@ -127,7 +154,7 @@ a {
 
 header {
   background-color: $gris_opaco;
-
+  margin-bottom: 25px;
 }
 
 #logo {
@@ -138,11 +165,12 @@ header {
 #main-title {
   text-align: center;
 }
-
+ul {
+  color: $gris_brillante;
+}
 
 //
 .table td {
-  background-color: white;
   height: 20px;
   width: 3px;
 }
@@ -152,13 +180,14 @@ header {
    text-overflow: ellipsis;
    white-space: nowrap;
   padding: 0px 5px 10px 5px;
+  color: $blanquito;
 }
 .table td:nth-child(1){
   padding-top: 10px;
 }
 .table td.active {
-  background-color: black;
+  background-color: $codea_amarillo;
 }
 .table td.goal {
-  background-color: red;
+  background-color: $codea_azul;
 }

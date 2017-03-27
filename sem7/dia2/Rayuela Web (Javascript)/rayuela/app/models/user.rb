@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   def self.authenticate(users)
     players = []
     users.each do |k,v|
+      v.gsub!(" ","_")
       hash = {}
       hash[v] = (user_id = user_taken?(v)) ? user_id : User.create!(name: v).id
       players << hash
