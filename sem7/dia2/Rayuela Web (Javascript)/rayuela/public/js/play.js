@@ -67,10 +67,12 @@ $(document).ready(function(){
     }
   }
 
-  function save_game(post_url, nearest = 0){ console.log(post_url);
+  function save_game(post_url, nearest = null, _players = null){ 
     var winner = null;
     var ids = [];
-    players.forEach(function(player){
+    if (_players == null) _players = players;
+
+    _players.forEach(function(player){
       ids.push(player.id);
       if (player.nth == nearest) winner = player;
     });
@@ -118,10 +120,10 @@ $(document).ready(function(){
         $("#winner .msg").html("");
       });
     }
-
-    return location.search.replace("?","").split('&').map(function(p) {
-      arr = p.split('=');
-      hash = {};
+    var out = [];
+    location.search.replace("?","").split('&').map(function(p) {
+      var arr = p.split('=');
+      var hash = {};
       hash.name = arr[0].replace(/[+]/g,"_");
       hash.id = arr[1];
       hash.press_start = null;
@@ -129,14 +131,15 @@ $(document).ready(function(){
       hash.move = null;
       hash.nth = null;
 
+      out.push(hash);
       init_stage(hash);
-      return hash ;
     });
 
-    //save_game("/batch_statistics");
+    save_game("/batch_statistics",null,out);
+    return out;
   };
 
-  function init_stage(key){
+  function init_stage(hash){
     $("#players_keys").append(
       "<li><figure class='brackets'><div class='name'>"+ hash.name.replace(/[_]/g," ") +"</div> juega con la letra<var>"+ hash.key +"</var><span>manten presionado para tomar impulso</span></figure></li>"
     );
