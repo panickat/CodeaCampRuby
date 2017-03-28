@@ -3,7 +3,7 @@
   @players.each do |player|
     %><%=
     "<tr id='#{player[0]}'>" +
-    "<td class='player'> #{player[0].gsub("_"," ")} </td>" +
+    "<td class='player'><div class='name'> #{player[0].gsub("_"," ")} </div></td>" +
     "<td class='active'></td>"
     %><%
     217.times {%><%= "<td></td>" %><%}
@@ -15,6 +15,9 @@
 </table>
 <br>
 <ul id="players_keys"></ul>
-<div id="winner" class="hide"></div>
-
+<div id="winner" class="hide">
+  <div class="msg"></div>
+  <button type="button" id="again">Jugar de nuevo</button>
+</div>
+<div id="statistics"></div>
 <script src="/js/play.js"></script>

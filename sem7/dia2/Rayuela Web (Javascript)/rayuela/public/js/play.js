@@ -1,7 +1,7 @@
 $(document).ready(function(){
-  var players = players();
+  var players = init_players();
 
-  //eventos
+  // events
   $(document).keydown(function(e) {
     switchkey(e, "down");
 
@@ -9,14 +9,17 @@ $(document).ready(function(){
     switchkey(e, "up");
   });
 
+  $("#again").click(function(){
+    players = init_players();
+  });
+
+  // helpers
   function switchkey(e,action){
     e.preventDefault();
 
     players.forEach(function(player, index){
       if (e.key == player.key) up_down(index ,action);
     });
-    //  $("#cris").find("td.active").removeClass("active");
-    //  $("#cris td:nth-child(2)").addClass("active");
   };
 
   function up_down(index, action){
@@ -49,7 +52,7 @@ $(document).ready(function(){
     var goal = $("#" + players[0].name).find("td.goal").index();
     var nearest = 0;
     var number_players = 0;
-    var winner = null;
+
     players.forEach(function(player){
 
       if (player.nth != null) {
@@ -59,16 +62,62 @@ $(document).ready(function(){
     });
 
     if (number_players == players.length){
-      players.forEach(function(player){
-        if (player.nth == nearest) winner = player
-      });
-      $("#winner").text("El ganador es: " + winner.name + "!!");
+      $("#winner > .msg").append("El ganador es: " + save_game("/save_game", nearest) + "!!");
       $("#winner").fadeTo("slow", 1);
     }
   }
 
-  function players(){
+  function save_game(post_url, nearest = 0){ console.log(post_url);
+    var winner = null;
+    var ids = [];
+    players.forEach(function(player){
+      ids.push(player.id);
+      if (player.nth == nearest) winner = player;
+    });
+
+    var posting = $.post( post_url , {players: ids, winner: winner.id} );
+    posting.done(function( data ) {
+      statistics(data);
+    });
+
+    return winner.name;
+  }
+
+
+  function statistics(data){
+    var li = "";
+    var games_total =0;
+    data.forEach(function(player){
+      games_total += player.wins;
+    });
+    data.forEach(function(player){
+      player_lost =  games_total - player.wins;
+      li += "<li><span class='name'>"+ player_name(player.user_id) +"</span> ganados:<var>"+ player.wins +"</var>perdidos:<var>"+ player_lost +"</var></li>";
+    });
+
+    $("#statistics").html(
+      "<h1 class='brackets'>Total de <span>juegos: "+ games_total +"</span></h1>" +
+      "<ol class='gris'>" +
+      li +
+      "</ol>"
+    );
+  }
+  function player_name(user_id){
+    out = "";
+    players.forEach(function(player){
+      if (player.id == user_id) out = player.name;
+    });
+    return out;
+  }
+
+  function init_players(){
     key_range = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    $("#players_keys").html("");
+    if ($("#winner").css("opacity") == 1){
+      $("#winner").fadeTo("slow", 0, function(){
+        $("#winner .msg").html("");
+      });
+    }
 
     return location.search.replace("?","").split('&').map(function(p) {
       arr = p.split('=');
@@ -80,16 +129,19 @@ $(document).ready(function(){
       hash.move = null;
       hash.nth = null;
 
-      instructions(hash);
+      init_stage(hash);
       return hash ;
     });
 
-    function instructions(key){
-      $("#players_keys").append(
-        "<li><figure class='brackets'><div class='name'>"+ hash.name.replace(/[_]/g," ") +"</div> juega con la letra<var>"+ hash.key +"</var><span>manten presionado para tomar impulso</span></figure></li>"
-      );
-    };
+    //save_game("/batch_statistics");
   };
 
+  function init_stage(key){
+    $("#players_keys").append(
+      "<li><figure class='brackets'><div class='name'>"+ hash.name.replace(/[_]/g," ") +"</div> juega con la letra<var>"+ hash.key +"</var><span>manten presionado para tomar impulso</span></figure></li>"
+    );
+    $("#" + hash.name).find("td.active").removeClass("active");
+    $("#" + hash.name + " td:nth-child(2)").addClass("active");
+  };
 
 });
