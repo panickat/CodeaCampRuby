@@ -1,0 +1,115 @@
+/* line 10, ../../app/views/sass/sass.scss */
+.img404 {
+  border: 3px solid #333333;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  display: block;
+  background-color: black;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.5em;
+}
+
+/* line 21, ../../app/views/sass/sass.scss */
+body {
+  background-color: #333333;
+  font-family: 'Open Sans', Helvetica;
+}
+
+/* line 26, ../../app/views/sass/sass.scss */
+form {
+  text-align: center;
+}
+
+/* line 31, ../../app/views/sass/sass.scss */
+label {
+  display: block;
+  letter-spacing: 4px;
+  padding-top: 30px;
+  text-align: center;
+}
+/* line 37, ../../app/views/sass/sass.scss */
+label .label-text {
+  color: #9B9B9B;
+  cursor: text;
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: uppercase;
+  -moz-transform: translateY(-34px);
+  -ms-transform: translateY(-34px);
+  -webkit-transform: translateY(-34px);
+  transform: translateY(-34px);
+  transition: all 0.3s;
+}
+/* line 47, ../../app/views/sass/sass.scss */
+label input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #4A4A4A;
+  color: white;
+  font-size: 36px;
+  letter-spacing: -1px;
+  outline: 0;
+  padding: 5px 20px;
+  text-align: center;
+  width: 200px;
+  transition: all 0.3s;
+}
+/* line 60, ../../app/views/sass/sass.scss */
+label input:focus {
+  width: 400px;
+}
+/* line 63, ../../app/views/sass/sass.scss */
+label input:focus + .label-text {
+  color: #F0F0F0;
+  font-size: 13px;
+  -moz-transform: translateY(-74px);
+  -ms-transform: translateY(-74px);
+  -webkit-transform: translateY(-74px);
+  transform: translateY(-74px);
+}
+/* line 70, ../../app/views/sass/sass.scss */
+label input:valid + .label-text {
+  font-size: 13px;
+  -moz-transform: translateY(-74px);
+  -ms-transform: translateY(-74px);
+  -webkit-transform: translateY(-74px);
+  transform: translateY(-74px);
+}
+
+/* line 77, ../../app/views/sass/sass.scss */
+button {
+  background-color: #333333;
+  border: 2px solid white;
+  border-radius: 27px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 15px 30px;
+  text-transform: uppercase;
+  transition: all 200ms;
+}
+/* line 89, ../../app/views/sass/sass.scss */
+button:hover, button:focus {
+  background-color: white;
+  color: #333333;
+  outline: 0;
+}
+
+/* line 96, ../../app/views/sass/sass.scss */
+form label:nth-last-child(1) {
+  opacity: 0;
+}
+
+/* line 100, ../../app/views/sass/sass.scss */
+.img404 {
+  background-image: url("../images/404.jpg");
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
