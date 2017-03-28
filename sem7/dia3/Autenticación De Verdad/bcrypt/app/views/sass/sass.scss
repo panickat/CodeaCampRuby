@@ -2,16 +2,16 @@
 @import "compass/utilities";
 @import "compass/css3";
 
-$mineShaft: #333333;
-$tundora: #4A4A4A;
-$dustyGray: #9B9B9B;
-$gallery: #F0F0F0;
+$gris_fondo: #333333; // gris fondo
+$gris_opaco: #4A4A4A; // gris opaco
+$gris_brillante: #9B9B9B; // gris brillante
+$blanquito: #F0F0F0; // blanquitow
 
 %stretched {
-  border: 3px solid $mineShaft;
+  border: 3px solid $gris_fondo;
   @include border-radius(8px);
   display: block;
-  background-color: darken($mineShaft, 30%);
+  background-color: darken($gris_fondo, 30%);
   color: white;
   text-align: center;
   vertical-align: middle;
@@ -19,7 +19,7 @@ $gallery: #F0F0F0;
 }
 
 body {
-  background-color: $mineShaft;
+  background-color: $gris_fondo;
   font-family: 'Open Sans', Helvetica;
 }
 
@@ -35,7 +35,7 @@ label {
   text-align: center;
 
   .label-text {
-    color: $dustyGray;
+    color: $gris_brillante;
     cursor: text;
     font-size: 20px;
     line-height: 20px;
@@ -47,7 +47,7 @@ label {
   input {
     background-color: transparent;
     border: 0;
-    border-bottom: 2px solid $tundora;
+    border-bottom: 2px solid $gris_opaco;
     color: white;
     font-size: 36px;
     letter-spacing: -1px;
@@ -61,7 +61,7 @@ label {
       width: 400px;
 
       & + .label-text {
-        color: $gallery;
+        color: $blanquito;
         font-size: 13px;
         @include transform(translateY(-74px));
       }
@@ -75,7 +75,7 @@ label {
 }
 
 button {
-  background-color: $mineShaft;
+  background-color: $gris_fondo;
   border: 2px solid white;
   border-radius: 27px;
   color: white;
@@ -88,7 +88,7 @@ button {
 
   &:hover, &:focus {
     background-color: white;
-    color: $mineShaft;
+    color: $gris_fondo;
     outline: 0;
   }
 }
@@ -97,8 +97,42 @@ form label:nth-last-child(1) {
   opacity: 0;
 }
 
+a {
+  &:link {
+    color: $gris_brillante;
+  }
+  &:visited {
+    color: $gris_opaco;
+  }
+  &:active {
+    color: green;
+  }
+}
+
+// user app
 .img404 {
   background-image: url("../images/404.jpg") ;
   @extend %stretched;
    @include stretch;
+}
+
+.not_show {
+  display: none;
+}
+
+//urls app
+#list_urls span {
+  display:inline-block;
+}
+
+.li1ro {
+  width: 60%;
+}
+
+.li2do {
+  width: 40%;
+  color: green;
+  var {
+    color: $blanquito;
+  }
 }

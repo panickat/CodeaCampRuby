@@ -104,7 +104,20 @@ form label:nth-last-child(1) {
   opacity: 0;
 }
 
-/* line 100, ../../app/views/sass/sass.scss */
+/* line 101, ../../app/views/sass/sass.scss */
+a:link {
+  color: #9B9B9B;
+}
+/* line 104, ../../app/views/sass/sass.scss */
+a:visited {
+  color: #4A4A4A;
+}
+/* line 107, ../../app/views/sass/sass.scss */
+a:active {
+  color: green;
+}
+
+/* line 113, ../../app/views/sass/sass.scss */
 .img404 {
   background-image: url("../images/404.jpg");
   position: absolute;
@@ -112,4 +125,29 @@ form label:nth-last-child(1) {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+/* line 119, ../../app/views/sass/sass.scss */
+.not_show {
+  display: none;
+}
+
+/* line 124, ../../app/views/sass/sass.scss */
+#list_urls span {
+  display: inline-block;
+}
+
+/* line 128, ../../app/views/sass/sass.scss */
+.li1ro {
+  width: 60%;
+}
+
+/* line 132, ../../app/views/sass/sass.scss */
+.li2do {
+  width: 40%;
+  color: green;
+}
+/* line 135, ../../app/views/sass/sass.scss */
+.li2do var {
+  color: #F0F0F0;
 }

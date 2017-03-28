@@ -1,11 +1,8 @@
-use Rack::Session::Cookie, :key => 'my_app_key',
-                           :path => '/',
-                           :expire_after => 10, # In seconds
-                           :secret => 'secret_stuff'
-
-get '/' do
-  erb :home
-end
+# use Rack::Session::Cookie, :key => 'rack.session',
+#                            :path => '/',
+#                            :expire_after => 86400, # In seconds
+#                            :secret => 'secret_stuff'
+app_name = "codea"
 
 get '/login' do
   erb :login
@@ -13,20 +10,6 @@ end
 
 get '/singin' do
   erb :signin
-
-end
-
-get '/app_content*' do
-  if env["rack.session"][:authenticate].nil?
-    redirect to "/404"
-  else
-    @usr_id = env["rack.session"][:authenticate]
-    erb :container
-  end
-end
-
-get '/*' do
-  erb :fail
 end
 
 post '/login' do
@@ -36,8 +19,9 @@ post '/login' do
   env["rack.session"][:authenticate] = User.authenticate(params)
   unless env["rack.session"][:authenticate].nil?
     response[:success] = true
-    response[:redirect_to] = "app_content"
+    response[:redirect_to] = app_name
   else
+    env["rack.session"][:authenticate] = nil
     response[:errs] = ["Nombre o contraseña invalidos"]
     response[:success] = false
   end
