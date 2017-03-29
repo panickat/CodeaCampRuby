@@ -21,6 +21,8 @@ gem 'shotgun'
 gem 'sass'
 gem 'compass'
 
+gem 'bcrypt'
+
 # testing
 group :test do
   gem 'faker'

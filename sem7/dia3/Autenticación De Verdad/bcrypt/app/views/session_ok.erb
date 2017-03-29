@@ -1,0 +1,32 @@
+<br>
+<label for="">
+<%=
+"<div class='label-text'>id sesion de usuario  #{env["rack.session"][:authenticate]} </div>"
+%>
+</label>
+
+<%
+env["rack.session"].each {|e|
+  %>
+  <label for="">
+  <%=
+   "<div class='label-text'> #{e} </div>"
+   %>
+   </label>
+   <% }
+%>
+
+<label for="">
+  <div class='label-text'><%= "Nombre: #{@current_user.name}" %></div>
+</label>
+<label for="">
+  <div class='label-text'><%= "Correo: #{@current_user.mail}" %></div>
+</label>
+<label for="">
+  <div class='label-text'><%= "Contraseña: #{@current_user.pwd}" %></div>
+</label>
+<label for="">
+  <div class='label-text'><%= "Id: #{@current_user.id}" %></div>
+</label>
+
+<label for=""><button id="close_session">Cerrar sesiòn</button></label>

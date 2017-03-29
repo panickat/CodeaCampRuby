@@ -16,8 +16,7 @@ post '/login' do
   content_type :json
   response = {}
 
-  env["rack.session"][:authenticate] = User.authenticate(params)
-  unless env["rack.session"][:authenticate].nil?
+  if logged_in?
     response[:success] = true
     response[:redirect_to] = app_name
   else
@@ -48,4 +47,21 @@ post '/singin' do
   end
 
   response.to_json
+end
+
+get "/close_session" do
+  env["rack.session"][:authenticate] = nil
+  redirect to "/"
+end
+
+get "/#{app_name}" do
+  redirect to "login" if env["rack.session"][:authenticate].nil?
+
+  current_user # contiene una variable de instancia @
+
+  erb :session_ok
+end
+
+get '/*' do
+  redirect to "/login"
 end

@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-  //General
-  if (location.pathname == "/codea") $("#close_session").removeClass("not_show");
-
   $( "form input" ).focus(function() {
     $( "label:nth-last-child(1)").fadeTo( "slow", 0 );
   });
@@ -44,33 +41,5 @@ $(document).ready(function() {
       $("label:nth-last-child(1)").fadeTo( "slow", 1 );
     });
   }
-
-  // urls app
-
-  $( "#frm_addurl" ).submit(function( event ) {
-
-    event.preventDefault();
-    var posting = $.post( "/add_url", $(this).serialize());
-
-    posting.done(function( data ) {
-
-
-      if (data.success) {
-
-        var url = location.origin + "/" + data.url.short_url;
-        $("label:nth-last-child(1)").html("Se guardo la url: " + data.url.long_url + " con el shorten: <a href='" + url + "' target='_blank'>" + url + "</a>");
-      }else{
-
-        var err_list = "";
-        data.errs.forEach( function(err) {
-          err_list += "<li>"+ err +"</li>";
-        });
-
-        $("label:nth-last-child(1)").html("<p>Lo sentimos mucho, no se guardo tu url por estas razones</p><ol>"+ err_list +"</ol>");
-      }
-      $("label:nth-last-child(1)").fadeTo( "slow", 1 );
-    });
-
-  });
-
+  
 });
